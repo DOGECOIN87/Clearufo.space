@@ -1,0 +1,238 @@
+<html><head><base href="https://clearufo.space/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Forensics Services - Our Services</title>
+<style>
+  :root {
+    --primary-color: #121212;
+    --secondary-color: #1e1e1e;
+    --accent-color: #ffffff;
+    --text-color: #cccccc;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: relative;
+    background-color: rgba(18, 18, 18, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+  }
+  
+  .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover, nav ul li a.active {
+    color: var(--accent-color);
+  }
+  
+  .section {
+    padding: 80px 40px;
+  }
+  
+  .section h2 {
+    color: var(--accent-color);
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .service-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-card h3 {
+    color: var(--accent-color);
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .service-card p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .service-icon {
+    font-size: 48px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px 40px;
+    background-color: var(--secondary-color);
+  }
+  
+  .curved-element {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-color: var(--accent-color);
+    opacity: 0.05;
+    border-bottom-left-radius: 100%;
+    z-index: -1;
+  }
+  
+  .circle-element {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+  <div class="curved-element"></div>
+  <div class="circle-element"></div>
+  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="/a/569c309f-ad33-4a0a-a9e2-9e8a639dcc9e" alt="Clear UFO Space logo" width="50" height="50">
+        <span>Video Forensics</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services" class="active">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <section class="section" id="services">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3>Video Enhancement</h3>
+          <p>Improve clarity and visibility of crucial details in your video evidence using in house developed forensic techniques.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔐</div>
+          <h3>Authentication</h3>
+          <p>Verify the integrity and authenticity of your video footage to ensure it hasn't been tampered with.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⏱️</div>
+          <h3>Timestamp Analysis</h3>
+          <p>Determine precise timing of events in your video evidence, crucial for establishing timelines in investigations.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">👤</div>
+          <h3>Facial Recognition</h3>
+          <p>Identify entities in video footage using advanced in house developed video forensic techniques.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎯</div>
+          <h3>Object Detection</h3>
+          <p>Locate and track specific objects or elements within video sequences, useful for gathering evidence.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Metadata Analysis</h3>
+          <p>Extract and analyze hidden metadata from video files to uncover additional contextual information.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <footer>
+    <p>&copy; 2024 ClearUFO.space services All rights reserved.</p>
+  </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.boxShadow = '0 10px 20px rgba(255, 255, 255, 0.1)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+        });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+</script>
+
+</body></html>
