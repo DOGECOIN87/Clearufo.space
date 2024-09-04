@@ -82,7 +82,7 @@
 
         .cta-button:hover {
             background-color: var(--primary-color);
-            color: var (--bg-color);
+            color: var(--bg-color);
             box-shadow: 0 0 20px var(--primary-color);
         }
 
@@ -162,15 +162,7 @@
 </head>
 <body>
     <div class="container">
-        <svg class="stars" xmlns="http://www.w3.org/2000/svg">
-            <!-- Predefined stars to ensure they load and animate -->
-            <circle cx="10%" cy="20%" r="1.5" fill="white" style="animation: twinkle 3s ease-in-out infinite;"></circle>
-            <circle cx="30%" cy="40%" r="2" fill="white" style="animation: twinkle 2.5s ease-in-out infinite;"></circle>
-            <circle cx="50%" cy="10%" r="1" fill="white" style="animation: twinkle 3.2s ease-in-out infinite;"></circle>
-            <circle cx="70%" cy="60%" r="1.8" fill="white" style="animation: twinkle 2.8s ease-in-out infinite;"></circle>
-            <circle cx="80%" cy="80%" r="1.2" fill="white" style="animation: twinkle 2.6s ease-in-out infinite;"></circle>
-            <!-- Add more stars with similar animations -->
-        </svg>
+        <svg class="stars" xmlns="http://www.w3.org/2000/svg"></svg>
 
         <div class="ufo-container">
             <svg class="ufo" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
@@ -194,6 +186,20 @@
     </div>
 
     <script>
+        // Dynamic star generation
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsSvg = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                star.setAttribute("cx", Math.random() * 100 + "%");
+                star.setAttribute("cy", Math.random() * 100 + "%");
+                star.setAttribute("r", Math.random() * 1.5 + 0.5);
+                star.setAttribute("fill", "white");
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                starsSvg.appendChild(star);
+            }
+        });
+
         // Parallax effect for stars and UFO
         document.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX / window.innerWidth;
