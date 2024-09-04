@@ -1,227 +1,172 @@
-<html><head><base href="https://Clearufo.space/">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Forensics Services - About Us</title>
-<style>
-  :root {
-    --primary-color: #121212;
-    --secondary-color: #1e1e1e;
-    --accent-color: #ffffff;
-    --text-color: #cccccc;
-  }
-  
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    position: relative;
-    background-color: rgba(18, 18, 18, 0.9);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--accent-color);
-  }
-  
-  .logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-  }
-  
-  nav ul li {
-    margin-left: 20px;
-  }
-  
-  nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover, nav ul li a.active {
-    color: var(--accent-color);
-  }
-  
-  .section {
-    padding: 80px 40px;
-  }
-  
-  .section h2 {
-    color: var(--accent-color);
-    font-size: 36px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .about-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-  }
-  
-  .about-text {
-    flex: 1;
-  }
-  
-  .about-image {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .about-image img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .mission-vision {
-    margin-top: 60px;
-    display: flex;
-    gap: 40px;
-  }
-  
-  .mission, .vision {
-    flex: 1;
-    background-color: var(--secondary-color);
-    padding: 30px;
-    border-radius: 10px;
-  }
-  
-  .mission h3, .vision h3 {
-    color: var(--accent-color);
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px 40px;
-    background-color: var(--secondary-color);
-  }
-  
-  .curved-element {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 300px;
-    background-color: var(--accent-color);
-    opacity: 0.05;
-    border-bottom-left-radius: 100%;
-    z-index: -1;
-  }
-  
-  .circle-element {
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
-    opacity: 0.1;
-    z-index: -1;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://clearufo.space/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Clear UFO</title>
+    <style>
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --bg-color: #000033;
+            --text-color: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(0, 0, 51, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .section {
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .mission-vision {
+            margin-top: 60px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .mission, .vision {
+            flex: 1;
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .mission h3, .vision h3 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: var(--bg-color);
+        }
+    </style>
 </head>
 <body>
-  <div class="curved-element"></div>
-  <div class="circle-element"></div>
-  
-  <div class="container">
-    <header>
-      <div class="logo">
-        <img src="/a/569c309f-ad33-4a0a-a9e2-9e8a639dcc9e" alt="Clear UFO Space logo" width="50" height="50">
-        <span>Video Forensics</span>
-      </div>
-<nav>
-  <ul>
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="aboutus.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+    <div class="container">
+        <header>
+            <div class="logo">
+                Clear UFO - About Us
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    </header>
-    
-    <section class="section" id="about">
-      <h2>About Us</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>At Video Forensics Services, we are dedicated to uncovering the truth hidden within video footage. Our team of expert analysts and cutting-edge technology work together to provide unparalleled video forensics services.</p>
-          <p>With years of experience in the field, we have assisted law enforcement agencies, legal professionals, and private investigators in solving complex cases by extracting crucial information from video evidence.</p>
-          <p>Our commitment to accuracy, confidentiality, and innovation sets us apart in the world of video forensics. We continuously invest in the latest technologies and methodologies to ensure we deliver the most reliable and comprehensive analysis possible.</p>
-        </div>
-        <div class="about-image">
-          <img src="https://video-forensics-services.com/assets/lab-image.jpg" alt="Video forensics laboratory with advanced equipment" width="500" height="300">
-        </div>
-      </div>
-      
-      <div class="mission-vision">
-        <div class="mission">
-          <h3>Our Mission</h3>
-          <p>To provide the highest quality video forensics services, empowering our clients with accurate and actionable insights that bring clarity to complex investigations and legal proceedings.</p>
-        </div>
-        <div class="vision">
-          <h3>Our Vision</h3>
-          <p>To be the global leader in video forensics, continuously pushing the boundaries of what's possible in digital evidence analysis and setting new standards for accuracy and reliability in the field.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-  
-  <footer>
-    <p>&copy; 2024 ClearUFO.space services All rights reserved.</p>
-  </footer>
+        <section class="section">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At Clear UFO, we are dedicated to uncovering the truth hidden within video footage. Our team of expert analysts and cutting-edge technology work together to provide unparalleled video forensics services.</p>
+                    <p>With years of experience in the field, we have assisted law enforcement agencies, legal professionals, and private investigators in solving complex cases by extracting crucial information from video evidence.</p>
+                    <p>Our commitment to accuracy, confidentiality, and innovation sets us apart in the world of video forensics. We continuously invest in the latest technologies and methodologies to ensure we deliver the most reliable and comprehensive analysis possible.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://video-forensics-services.com/assets/lab-image.jpg" alt="Video forensics laboratory with advanced equipment">
+                </div>
+            </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+            <div class="mission-vision">
+                <div class="mission">
+                    <h3>Our Mission</h3>
+                    <p>To provide the highest quality video forensics services, empowering our clients with accurate and actionable insights that bring clarity to complex investigations and legal proceedings.</p>
+                </div>
+                <div class="vision">
+                    <h3>Our Vision</h3>
+                    <p>To be the global leader in video forensics, continuously pushing the boundaries of what's possible in digital evidence analysis and setting new standards for accuracy and reliability in the field.</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    // Add a subtle parallax effect to the about image
-    const aboutImage = document.querySelector('.about-image img');
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.pageYOffset;
-        aboutImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
-    });
-});
-</script>
-
-</body></html>
+    <footer>
+        <p>&copy; 2024 ClearUFO.space services. All rights reserved.</p>
+    </footer>
+</body>
+</html>
