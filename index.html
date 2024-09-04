@@ -133,45 +133,37 @@
                 height: 75px;
             }
         }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        @keyframes moveStars {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
+        .stars {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: rotateStars 120s linear infinite;
+        }
+
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <svg class="stars" xmlns="http://www.w3.org/2000/svg">
-            <script>
-                const starsSvg = document.querySelector('.stars');
-                for (let i = 0; i < 200; i++) {
-                    const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                    star.setAttribute("cx", Math.random() * 100 + "%");
-                    star.setAttribute("cy", Math.random() * 100 + "%");
-                    star.setAttribute("r", Math.random() * 1.5 + 0.5);
-                    star.setAttribute("fill", "white");
-                    star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
-                    starsSvg.appendChild(star);
-                }
-            </script>
-            <style>
-                @keyframes twinkle {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.2; }
-                }
-                @keyframes moveStars {
-                    from { transform: translateY(-100%); }
-                    to { transform: translateY(100%); }
-                }
-                .stars {
-                    position: absolute;
-                    width: 200%;
-                    height: 200%;
-                    top: -50%;
-                    left: -50%;
-                    animation: rotateStars 120s linear infinite;
-                }
-                @keyframes rotateStars {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                }
-            </style>
+            <!-- Stars will be generated dynamically -->
         </svg>
 
         <div class="ufo-container">
@@ -196,6 +188,21 @@
     </div>
 
     <script>
+        // Generate animated stars
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsSvg = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                star.setAttribute("cx", Math.random() * 100 + "%");
+                star.setAttribute("cy", Math.random() * 100 + "%");
+                star.setAttribute("r", Math.random() * 1.5 + 0.5);
+                star.setAttribute("fill", "white");
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                starsSvg.appendChild(star);
+            }
+        });
+
+        // Parallax effect for stars and UFO
         document.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX / window.innerWidth;
             const mouseY = e.clientY / window.innerHeight;
@@ -203,6 +210,7 @@
             document.querySelector('.ufo-container').style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
         });
 
+        // UFO hover effect
         const ufo = document.querySelector('.ufo');
         ufo.addEventListener('mouseover', () => {
             ufo.style.filter = 'hue-rotate(180deg)';
@@ -211,15 +219,7 @@
         ufo.addEventListener('mouseout', () => {
             ufo.style.filter = 'none';
         });
-
-        document.querySelector('.cta-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.container').style.opacity = 0;
-            document.querySelector('.container').style.transition = 'opacity 1s ease';
-            setTimeout(() => {
-                window.location.href = 'home.html';
-            }, 1000);
-        });
     </script>
+
 </body>
 </html>
