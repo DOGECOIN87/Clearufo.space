@@ -1,215 +1,145 @@
-<html><head><base href="https://clearufo.space/">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Forensics Services - Home</title>
-<style>
-  :root {
-    --primary-color: #121212;
-    --secondary-color: #1e1e1e;
-    --accent-color: #ffffff;
-    --text-color: #cccccc;
-  }
-  
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: rgba(18, 18, 18, 0.9);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--accent-color);
-  }
-  
-  .logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-  }
-  
-  nav ul li {
-    margin-left: 20px;
-  }
-  
-  nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover, nav ul li a.active {
-    color: var(--accent-color);
-  }
-  
-  .hero {
-    height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-content {
-    z-index: 2;
-  }
-  
-  .hero h1 {
-    font-size: 48px;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-  }
-  
-  .hero p {
-    font-size: 24px;
-    max-width: 600px;
-    margin: 0 auto 30px;
-  }
-  
-  .cta-button {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    padding: 12px 24px;
-    font-size: 18px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .ufo-animation {
-    position: absolute;
-    width: 200px;
-    height: 100px;
-    opacity: 0.1;
-    z-index: 1;
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px 40px;
-    background-color: var(--secondary-color);
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://clearufo.space/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Clear UFO</title>
+    <style>
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --bg-color: #000033;
+            --text-color: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(0, 0, 51, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 40px;
+            background-color: var(--bg-color);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .section {
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: var(--bg-color);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <img src="/a/569c309f-ad33-4a0a-a9e2-9e8a639dcc9e" alt="Clear UFO Space logo" width="50" height="50">
-        <span>Video Forensics</span>
-      </div>
-<nav>
-  <ul>
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="aboutus.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+    <div class="container">
+        <header>
+            <div class="logo">
+                Clear UFO - Home
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    </header>
-    
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <h1>Uncovering Truth in Every Frame</h1>
-        <p>Experimental Video Forensics Services for anyone.</p>
-        <a href="#contact" class="cta-button">Get Started</a>
-      </div>
-      <svg class="ufo-animation" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="50" cy="25" rx="40" ry="10" fill="#ffffff"/>
-        <circle cx="50" cy="20" r="15" fill="#ffffff"/>
-      </svg>
-    </section>
-  </div>
-  
-  <footer>
-    <p>&copy; 2023 Video Forensics Services. All rights reserved.</p>
-  </footer>
+        <section class="hero">
+            <h1>Uncovering Truth in Every Frame</h1>
+            <p>Experimental Video Forensics Services for anyone.</p>
+            <a href="services.html" class="cta-button">Explore Services</a>
+        </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    const ufo = document.querySelector('.ufo-animation');
-    
-    function animateUFO() {
-        ufo.style.animation = 'float 5s ease-in-out infinite';
-        ufo.style.left = Math.random() * (window.innerWidth - 200) + 'px';
-        ufo.style.top = Math.random() * (window.innerHeight - 100) + 'px';
-    }
-    
-    animateUFO();
-    setInterval(animateUFO, 5000);
+        <section class="section">
+            <h2>Why Choose Us?</h2>
+            <p>With cutting-edge technology and a team of experts, we help solve the mysteries hidden in your footage. Our techniques are reliable, confidential, and built on years of experience.</p>
+        </section>
+    </div>
 
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Highlight active navigation link
-    const navLinks = document.querySelectorAll('nav ul li a');
-    const sections = document.querySelectorAll('section');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').slice(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
-});
-</script>
-
-</body></html>
+    <footer>
+        <p>&copy; 2024 ClearUFO.space services. All rights reserved.</p>
+    </footer>
+</body>
+</html>
