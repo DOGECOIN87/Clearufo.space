@@ -21,7 +21,8 @@
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .container {
@@ -29,8 +30,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            height: 100%;
+            position: relative;
         }
 
         h1 {
@@ -87,11 +88,11 @@
 
         .stars {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            top: 0;
-            left: 0;
             z-index: -1;
         }
 
