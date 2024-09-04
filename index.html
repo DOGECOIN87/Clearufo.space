@@ -1,292 +1,211 @@
-<html><head><base href="https://clearufo.space/">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Forensics Services</title>
-<style>
-  :root {
-    --primary-color: #121212;
-    --secondary-color: #1e1e1e;
-    --accent-color: #ffffff;
-    --text-color: #cccccc;
-  }
-  
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    position: relative;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--accent-color);
-  }
-  
-  .logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-  }
-  
-  nav ul li {
-    margin-left: 20px;
-  }
-  
-  nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: var(--accent-color);
-  }
-  
-  .hero {
-    text-align: left;
-    padding: 100px 40px;
-    position: relative;
-  }
-  
-  .hero h1 {
-    font-size: 48px;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-  }
-  
-  .hero p {
-    font-size: 18px;
-    max-width: 600px;
-  }
-  
-  .cta-button {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .section {
-    padding: 50px 40px;
-  }
-  
-  .section h2 {
-    color: var(--accent-color);
-    font-size: 36px;
-    margin-bottom: 30px;
-  }
-  
-  .card-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .card {
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    width: calc(50% - 20px);
-  }
-  
-  .card h3 {
-    color: var(--accent-color);
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    font-size: 16px;
-  }
-  
-  .video-player {
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 30px;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px 40px;
-    background-color: var(--secondary-color);
-  }
-  
-  .curved-element {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 300px;
-    background-color: var(--accent-color);
-    opacity: 0.05;
-    border-bottom-left-radius: 100%;
-  }
-  
-  .circle-element {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
-    opacity: 0.1;
-  }
-  
-  .features {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-  }
-  
-  .feature {
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    padding: 20px;
-    width: calc(33% - 20px);
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://clearufo.space/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear UFO - Unveiling Cosmic Mysteries</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --bg-color: #000033;
+            --text-color: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 1s forwards;
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 2s forwards;
+        }
+
+        .ufo-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            margin-bottom: 2rem;
+        }
+
+        .ufo {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeIn 2s ease-out, hover 4s ease-in-out infinite;
+        }
+
+        .beam {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 0;
+            background-color: var(--primary-color);
+            animation: beam 4s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .cta-button {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 3s forwards;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes hover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes beam {
+            0%, 100% { height: 0; opacity: 0; }
+            50% { height: 100px; opacity: 0.7; }
+        }
+    </style>
 </head>
 <body>
-  <div class="curved-element"></div>
-  <div class="circle-element"></div>
-  
-  <div class="container">
-    <header>
-      <div class="logo">
-        <img src="/a/569c309f-ad33-4a0a-a9e2-9e8a639dcc9e" alt="Clear UFO Space logo" width="50" height="50">
-        <span>Video Forensics</span>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    
-    <section class="hero" id="home">
-      <h1>Video Forensics Services</h1>
-      <p>Uncover the truth with our cutting-edge video analysis techniques</p>
-      <a href="#contact" class="cta-button">Learn More</a>
-    </section>
-    
-    <section class="section" id="services">
-      <h2>Our Services</h2>
-      <div class="card-container">
-        <div class="card">
-          <h3>Video Enhancement</h3>
-          <p>Improve clarity and visibility of crucial details in your video evidence.</p>
-        </div>
-        <div class="card">
-          <h3>Authentication</h3>
-          <p>Verify the integrity and authenticity of your video footage.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="section" id="about">
-      <h2>Video Analysis</h2>
-      <div class="video-player">
-        <div style="background: #2a2a2a; height: 300px; display: flex; align-items: center; justify-content: center; color: #fff; border-radius: 10px;">
-          Video Player Placeholder
-        </div>
-      </div>
-    </section>
-    
-    <section class="section" id="features">
-      <h2>Featured Services</h2>
-      <div class="features">
-        <div class="feature">
-          <h3>Timestamp Analysis</h3>
-          <p>Determine precise timing of events in your video evidence.</p>
-        </div>
-        <div class="feature">
-          <h3>Facial Recognition</h3>
-          <p>Identify individuals in video footage using advanced AI algorithms.</p>
-        </div>
-        <div class="feature">
-          <h3>Object Detection</h3>
-          <p>Locate and track specific objects or elements within video sequences.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-  
-  <footer>
-    <p>&copy; 2023 Video Forensics Services. All rights reserved.</p>
-  </footer>
+    <div class="container">
+        <svg class="stars" xmlns="http://www.w3.org/2000/svg">
+            <script>
+                const starsSvg = document.querySelector('.stars');
+                for (let i = 0; i < 200; i++) {
+                    const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    star.setAttribute("cx", Math.random() * 100 + "%");
+                    star.setAttribute("cy", Math.random() * 100 + "%");
+                    star.setAttribute("r", Math.random() * 1.5 + 0.5);
+                    star.setAttribute("fill", "white");
+                    star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                    starsSvg.appendChild(star);
+                }
+            </script>
+            <style>
+                @keyframes twinkle {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.2; }
+                }
+                @keyframes moveStars {
+                    from { transform: translateY(-100%); }
+                    to { transform: translateY(100%); }
+                }
+                .stars {
+                    position: absolute;
+                    width: 200%;
+                    height: 200%;
+                    top: -50%;
+                    left: -50%;
+                    animation: rotateStars 120s linear infinite;
+                }
+                @keyframes rotateStars {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            </style>
+        </svg>
 
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    const navLinks = document.querySelectorAll('nav ul li a');
-    const sections = document.querySelectorAll('.section');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                current = section.getAttribute('id');
-            }
+        <div class="ufo-container">
+            <svg class="ufo" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="ufoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1"></stop>
+                        <stop offset="100%" style="stop-color:var(--secondary-color);stop-opacity:1"></stop>
+                    </linearGradient>
+                </defs>
+                <ellipse cx="150" cy="75" rx="120" ry="37.5" fill="url(#ufoGradient)"></ellipse>
+                <circle cx="150" cy="75" r="52.5" fill="#1e3a8a"></circle>
+                <circle cx="150" cy="75" r="45" fill="#2563eb"></circle>
+                <circle cx="150" cy="75" r="37.5" fill="#3b82f6"></circle>
+                <circle cx="150" cy="75" r="30" fill="#60a5fa"></circle>
+                <circle cx="150" cy="75" r="22.5" fill="#93c5fd"></circle>
+            </svg>
+        </div>
+        <h1>Clear UFO</h1>
+        <p class="subtitle">Unveiling Cosmic Mysteries</p>
+        <button class="cta-button" onclick="window.location.href='https://clearufo.space/explore'">Start Exploring</button>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            document.querySelector('.stars').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+            document.querySelector('.ufo-container').style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').slice(1) === current) {
-                link.classList.add('active');
-            }
+        const ufo = document.querySelector('.ufo');
+        ufo.addEventListener('mouseover', () => {
+            ufo.style.filter = 'hue-rotate(180deg)';
+            ufo.style.transition = 'filter 0.5s ease';
         });
-    });
+        ufo.addEventListener('mouseout', () => {
+            ufo.style.filter = 'none';
+        });
 
-    const cards = document.querySelectorAll('.card, .feature');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'scale(1.05)';
-            card.style.transition = 'transform 0.3s ease';
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.container').style.opacity = 0;
+            document.querySelector('.container').style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                window.location.href = 'https://clearufo.space/explore';
+            }, 1000);
         });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'scale(1)';
-        });
-    });
-});
-</script>
-
-</body></html>
+    </script>
+</body>
+</html>
