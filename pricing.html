@@ -73,57 +73,30 @@
             margin-bottom: 1rem;
         }
 
-        .plan .price span {
-            font-size: 1rem;
-            color: var(--text-color);
+        nav {
+            margin-bottom: 20px;
         }
 
-        .plan .features {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
         }
 
-        .plan button {
-            padding: 12px 24px;
-            border: 2px solid var(--primary-color);
-            background-color: transparent;
-            color: var(--text-color);
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        nav ul li {
+            margin: 0 15px;
         }
 
-        .plan button:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--primary-color);
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
         }
 
-        .pricing-toggle {
-            margin-bottom: 40px;
-        }
-
-        .pricing-toggle button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background-color: #111144;
-            color: var(--text-color);
-            font-weight: bold;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .pricing-toggle button.active {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-        }
-
-        .pricing-toggle button:hover {
-            background-color: var(--primary-color);
+        nav ul li a:hover {
+            color: var(--secondary-color);
         }
 
         footer {
@@ -135,6 +108,17 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Links -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <h1>Pricing</h1>
         <p class="pricing-subtitle">Choose the plan that suits your needs and start unveiling cosmic mysteries today.</p>
@@ -145,28 +129,28 @@
         </div>
 
         <div class="pricing-grid">
-            <!-- Personal Plan -->
-            <div class="plan">
+            <!-- Single Image -->
+            <div class="Enhancement Services">
                 <h2>Personal</h2>
-                <div class="price">Free <span>/mo</span></div>
+                <div class="price">$19.99-$49.99 <span>/mo</span></div>
                 <p class="features">• 1 device<br>• Basic Support<br>• Secure Connection</p>
                 <button>Try Now</button>
             </div>
 
-            <!-- Starter Plan -->
-            <div class="plan">
-                <h2>Starter</h2>
-                <div class="price">$2.99 <span>/mo</span></div>
-                <p class="features">• Covers 5 devices<br>• Secure Connection<br>• 24/7 Support</p>
-                <button>Subscribe Now</button>
+            <!-- Video -->
+            <div class="Enhancement Services">
+                <h2>Personal</h2>
+                <div class="price">$99.99-$249.99 <span>/mo</span></div>
+                <p class="features">• Depending on length & complexity<br>• Free Consultation<br>• 24/7 Support</p>
+                <button>Contact for more information</button>
             </div>
 
-            <!-- Premium Plan -->
-            <div class="plan">
+            <!-- Other -->
+            <div class="Other">
                 <h2>Premium</h2>
-                <div class="price">$6.99 <span>/mo</span></div>
-                <p class="features">• Covers 10 devices<br>• Priority Support<br>• Advanced Security</p>
-                <button>Subscribe Now</button>
+                <div class="price">$TBA <span>/mo</span></div>
+                <p class="features">• ?<br>• Priority Support<br>• Advanced Techniques</p>
+                <button>Contact Now</button>
             </div>
         </div>
     </div>
