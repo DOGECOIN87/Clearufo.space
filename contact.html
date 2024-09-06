@@ -19,6 +19,9 @@
             font-family: 'Arial', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            height: 100%;
+            overflow: hidden;
+            position: relative;
         }
 
         .container {
@@ -26,6 +29,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px;
+            position: relative;
+            z-index: 10;
         }
 
         header {
@@ -39,10 +44,9 @@
             z-index: 1000;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
+        .logo img {
+            max-width: 200px;
+            height: auto;
         }
 
         nav ul {
@@ -128,13 +132,57 @@
             padding: 20px 40px;
             background-color: var(--bg-color);
         }
+
+        /* Star Animation */
+        .stars {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: rotateStars 120s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        @keyframes moveStars {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
     </style>
 </head>
 <body>
+    <!-- Star Background -->
+    <svg class="stars" xmlns="http://www.w3.org/2000/svg">
+        <script>
+            const starsSvg = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                star.setAttribute("cx", Math.random() * 100 + "%");
+                star.setAttribute("cy", Math.random() * 100 + "%");
+                star.setAttribute("r", Math.random() * 1.5 + 0.5);
+                star.setAttribute("fill", "white");
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                starsSvg.appendChild(star);
+            }
+        </script>
+    </svg>
+
     <div class="container">
         <header>
             <div class="logo">
-                Clear UFO - Contact Us
+                <img src="logo.png" alt="ClearUFO Logo">
             </div>
             <nav>
                 <ul>
