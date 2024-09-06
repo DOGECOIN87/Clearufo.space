@@ -4,7 +4,7 @@
     <base href="https://clearufo.space/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClearUFO.space - Unveiling Cosmic Mysteries</title>
+    <title>Pricing - ClearUFO.Space</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
 
@@ -18,94 +18,121 @@
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            height: 100%;
+            overflow: hidden;
+            position: relative;
         }
 
         .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
-            display: none;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px var(--primary-color);
         }
 
-        .subtitle {
-            display: none;
-        }
-
-        .ufo-container {
-            position: relative;
-            width: 300px;
-            height: 150px;
+        .pricing-subtitle {
+            font-size: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .ufo {
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            animation: fadeIn 2s ease-out, hover 4s ease-in-out infinite;
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        .logo {
-            width: 100%;
-            max-width: 400px;
+        .plan {
+            background-color: rgba(17, 17, 68, 0.7); /* Semi-opaque background */
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Semi-opaque border */
+            backdrop-filter: blur(10px); /* Adds blur effect to the background */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .plan h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .plan .price {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .logo img {
+            max-width: 200px;
             height: auto;
-            animation: fadeIn 2s ease-out 1s forwards;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .logo:hover {
-            transform: translateY(-10px); /* Raise the logo slightly */
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3); /* Increase shadow size */
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: var(--secondary-color);
+            margin-top: 50px;
         }
 
+        /* Star Animation */
         .stars {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: rotateStars 120s linear infinite;
+            z-index: 1;
             pointer-events: none;
         }
 
-        .cta-button {
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeIn 2s ease-out 3s forwards;
-        }
-
-        .cta-button:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px var(--primary-color);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes hover {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes twinkle {
@@ -118,93 +145,58 @@
             to { transform: translateY(100%); }
         }
 
-        .stars {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            animation: rotateStars 120s linear infinite;
-        }
-
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            .cta-button {
-                font-size: 1rem;
-                padding: 0.8rem 1.5rem;
-            }
-            .ufo-container {
-                width: 200px;
-                height: 100px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .cta-button {
-                font-size: 0.9rem;
-                padding: 0.7rem 1.2rem;
-            }
-            .ufo-container {
-                width: 150px;
-                height: 75px;
-            }
-        }
     </style>
 </head>
 <body>
+    <!-- Star Background -->
+    <svg class="stars" xmlns="http://www.w3.org/2000/svg">
+        <script>
+            const starsSvg = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                star.setAttribute("cx", Math.random() * 100 + "%");
+                star.setAttribute("cy", Math.random() * 100 + "%");
+                star.setAttribute("r", Math.random() * 1.5 + 0.5);
+                star.setAttribute("fill", "white");
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                starsSvg.appendChild(star);
+            }
+        </script>
+    </svg>
+
     <div class="container">
-        <svg class="stars" xmlns="http://www.w3.org/2000/svg">
-            <script>
-                const starsSvg = document.querySelector('.stars');
-                for (let i = 0; i < 200; i++) {
-                    const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                    star.setAttribute("cx", Math.random() * 100 + "%");
-                    star.setAttribute("cy", Math.random() * 100 + "%");
-                    star.setAttribute("r", Math.random() * 1.5 + 0.5);
-                    star.setAttribute("fill", "white");
-                    star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
-                    starsSvg.appendChild(star);
-                }
-            </script>
-        </svg>
+        <h1>Pricing</h1>
+        <p class="pricing-subtitle">Choose an option that best suits your needs.</p>
 
-        <img src="logo.png" alt="ClearUFO Logo" class="logo" />
+        <div class="pricing-grid">
+            <!-- Single Image -->
+            <div class="plan">
+                <h2>Image Enhancement</h2>
+                <div class="price">$19.99 - $49.99 <span>/mo</span></div>
+                <p class="features">• 1 Image<br>• Advanced Processing<br>• Free Consultation</p>
+                <button>Choose Now</button>
+            </div>
 
-        <button class="cta-button" onclick="window.location.href='home.html'">Start Exploring</button>
+            <!-- Multiple Images -->
+            <div class="plan">
+                <h2>Image Enhancement</h2>
+                <div class="price">$14.99 - $34.99 <span>/mo</span></div>
+                <p class="features">• Covers Multiple Images<br>• Advanced Processing<br>• Free Consultation</p>
+                <button>Choose Now</button>
+            </div>
+
+            <!-- Video -->
+            <div class="plan">
+                <h2>Video Enhancement</h2>
+                <div class="price">$99.99 - $249.99<span>/mo</span></div>
+                <p class="features">• Pricing consideration based on length & complexity<br>• Advanced Processing<br>• Free Consultation</p>
+                <button>Choose Now</button>
+            </div>
+        </div>
     </div>
 
-    <script>
-        // Add subtle parallax effect
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            document.querySelector('.stars').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
-            document.querySelector('.ufo-container').style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
-        });
-
-        // Add interactive hover effect for UFO
-        const ufo = document.querySelector('.ufo');
-        ufo.addEventListener('mouseover', () => {
-            ufo.style.filter = 'hue-rotate(180deg)';
-            ufo.style.transition = 'filter 0.5s ease';
-        });
-        ufo.addEventListener('mouseout', () => {
-            ufo.style.filter = 'none';
-        });
-
-        // Add smooth scroll to explore section
-        document.querySelector('.cta-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.container').style.opacity = 0;
-            document.querySelector('.container').style.transition = 'opacity 1s ease';
-            setTimeout(() => {
-                window.location.href = 'https://clearufo.space/explore';
-            }, 1000);
-        });
-    </script>
+    <footer>
+        <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
+    </footer>
 </body>
 </html>
