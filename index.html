@@ -36,18 +36,11 @@
         }
 
         h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeIn 2s ease-out 1s forwards;
-            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+            display: none;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            opacity: 0;
-            animation: fadeIn 2s ease-out 2s forwards;
+            display: none;
         }
 
         .ufo-container {
@@ -62,6 +55,19 @@
             height: 100%;
             opacity: 0;
             animation: fadeIn 2s ease-out, hover 4s ease-in-out infinite;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            animation: fadeIn 2s ease-out 1s forwards;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-10px); /* Raise the logo slightly */
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3); /* Increase shadow size */
         }
 
         .stars {
@@ -127,9 +133,6 @@
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
-            }
             .cta-button {
                 font-size: 1rem;
                 padding: 0.8rem 1.5rem;
@@ -141,9 +144,6 @@
         }
 
         @media (max-width: 500px) {
-            h1 {
-                font-size: 2rem;
-            }
             .cta-button {
                 font-size: 0.9rem;
                 padding: 0.7rem 1.2rem;
@@ -172,25 +172,8 @@
             </script>
         </svg>
 
-        <div class="ufo-container">
-            <svg class="ufo" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="ufoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1"></stop>
-                        <stop offset="100%" style="stop-color:var(--secondary-color);stop-opacity:1"></stop>
-                    </linearGradient>
-                </defs>
-                <ellipse cx="150" cy="75" rx="120" ry="37.5" fill="url(#ufoGradient)"></ellipse>
-                <circle cx="150" cy="75" r="52.5" fill="#1e3a8a"></circle>
-                <circle cx="150" cy="75" r="45" fill="#2563eb"></circle>
-                <circle cx="150" cy="75" r="37.5" fill="#3b82f6"></circle>
-                <circle cx="150" cy="75" r="30" fill="#60a5fa"></circle>
-                <circle cx="150" cy="75" r="22.5" fill="#93c5fd"></circle>
-            </svg>
-        </div>
+        <img src="logo.png" alt="ClearUFO Logo" class="logo" />
 
-        <h1>ClearUFO.Space</h1>
-        <p class="subtitle">Unveiling Cosmic Mysteries</p>
         <button class="cta-button" onclick="window.location.href='home.html'">Start Exploring</button>
     </div>
 
