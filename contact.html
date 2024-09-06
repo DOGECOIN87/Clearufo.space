@@ -19,9 +19,33 @@
             font-family: 'Arial', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            height: 100%;
-            overflow: hidden;
-            position: relative;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stars {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: rotateStars 120s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
         }
 
         .container {
@@ -29,8 +53,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px;
-            position: relative;
             z-index: 10;
+            position: relative;
         }
 
         header {
@@ -127,39 +151,17 @@
             background-color: #e0e0e0;
         }
 
+        .contact-info {
+            margin-top: 20px;
+        }
+
         footer {
             text-align: center;
             padding: 20px 40px;
             background-color: var(--bg-color);
+            margin-top: auto;
+            z-index: 10;
         }
-
-        /* Star Animation */
-        .stars {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            animation: rotateStars 120s linear infinite;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
-        }
-
-        @keyframes moveStars {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(100%); }
-        }
-
     </style>
 </head>
 <body>
@@ -173,7 +175,7 @@
                 star.setAttribute("cy", Math.random() * 100 + "%");
                 star.setAttribute("r", Math.random() * 1.5 + 0.5);
                 star.setAttribute("fill", "white");
-                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`;
                 starsSvg.appendChild(star);
             }
         </script>
