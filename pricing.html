@@ -12,7 +12,7 @@
             --primary-color: #00ffff;
             --secondary-color: #ff00ff;
             --bg-color: #000033;
-            --text-color: #ffffff
+            --text-color: #ffffff;
         }
 
         body, html {
@@ -49,9 +49,11 @@
         }
 
         .plan {
-            background-color: #111144;
+            background-color: rgba(17, 17, 68, 0.7); /* Semi-opaque background */
             padding: 30px;
             border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Semi-opaque border */
+            backdrop-filter: blur(10px); /* Adds blur effect to the background */
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -79,6 +81,7 @@
         nav ul {
             display: flex;
             justify-content: center;
+            align-items: center;
             list-style: none;
             padding: 0;
         }
@@ -98,6 +101,11 @@
             color: var(--secondary-color);
         }
 
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
         footer {
             text-align: center;
             padding: 20px 40px;
@@ -110,6 +118,7 @@
     <!-- Navigation Links -->
     <nav>
         <ul>
+            <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
@@ -121,11 +130,10 @@
     <div class="container">
         <h1>Pricing</h1>
         <p class="pricing-subtitle">Choose an option that best suits your needs.</p>
-        
 
-            <div class="pricing-grid">
+        <div class="pricing-grid">
             <!-- Single Image -->
-            <div class="Image">
+            <div class="plan">
                 <h2>Image Enhancement</h2>
                 <div class="price">$19.99 - $49.99 <span>/mo</span></div>
                 <p class="features">• 1 Image<br>• Advanced Processing<br>• Free Consultation</p>
@@ -133,7 +141,7 @@
             </div>
 
             <!-- Multiple Images -->
-            <div class="Image">
+            <div class="plan">
                 <h2>Image Enhancement</h2>
                 <div class="price">$14.99 - $34.99 <span>/mo</span></div>
                 <p class="features">• Covers Multiple Images<br>• Advanced Processing<br>• Free Consultation</p>
@@ -141,7 +149,7 @@
             </div>
 
             <!-- Video -->
-            <div class="Video">
+            <div class="plan">
                 <h2>Video Enhancement</h2>
                 <div class="price">$99.99 - $249.99<span>/mo</span></div>
                 <p class="features">• Pricing consideration based on length & complexity<br>• Advanced Processing<br>• Free Consultation</p>
