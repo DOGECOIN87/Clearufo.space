@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - ClearUFO.space</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
         :root {
             --primary-color: #00ffff;
             --secondary-color: #ff00ff;
@@ -16,73 +18,43 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            height: 100%;
+            font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stars {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            animation: rotateStars 120s linear infinite;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
         }
 
         .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px;
-            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
             position: relative;
-            z-index: 10;
             text-align: center;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 51, 0.8);
             position: sticky;
             top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 51, 0.8);
             z-index: 1000;
         }
 
         .logo img {
             max-width: 200px;
-            height: auto;
         }
 
         nav ul {
             list-style-type: none;
             display: flex;
+            justify-content: center;
+            padding: 0;
         }
 
         nav ul li {
-            margin-left: 20px;
+            margin: 0 15px;
         }
 
         nav ul li a {
@@ -96,14 +68,13 @@
         }
 
         .section {
-            padding: 80px 40px;
             text-align: center;
         }
 
         .section h2 {
-            color: var(--primary-color);
             font-size: 36px;
             margin-bottom: 30px;
+            color: var(--primary-color);
         }
 
         .contact-form {
@@ -112,6 +83,7 @@
             background-color: var(--secondary-color);
             padding: 30px;
             border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .form-group {
@@ -162,7 +134,32 @@
             text-align: center;
             padding: 20px 40px;
             background-color: var(--bg-color);
-            z-index: 10;
+        }
+
+        /* Star Background */
+        .stars {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            pointer-events: none;
+            animation: rotateStars 120s linear infinite;
+        }
+
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        @keyframes moveStars {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
         }
     </style>
 </head>
@@ -177,7 +174,7 @@
                 star.setAttribute("cy", Math.random() * 100 + "%");
                 star.setAttribute("r", Math.random() * 1.5 + 0.5);
                 star.setAttribute("fill", "white");
-                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`;
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
                 starsSvg.appendChild(star);
             }
         </script>
