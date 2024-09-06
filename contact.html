@@ -22,26 +22,26 @@
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-        }
-
-        .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-            text-align: center;
+            justify-content: space-between; /* Ensure footer stays at the bottom */
         }
 
+        /* Container for all content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            flex-grow: 1; /* Ensures the main content takes up space */
+        }
+
+        /* Header with logo and navigation */
         header {
             display: flex;
-            justify-content: space-between; /* This fixes the alignment of the logo and navigation */
+            justify-content: space-between; /* Fixes alignment */
             align-items: center;
             padding: 20px 40px;
             background-color: rgba(0, 0, 51, 0.8);
-            position: sticky;
-            top: 0;
             z-index: 1000;
         }
 
@@ -52,7 +52,6 @@
         nav ul {
             list-style-type: none;
             display: flex;
-            padding: 0;
         }
 
         nav ul li {
@@ -69,6 +68,7 @@
             color: var(--primary-color);
         }
 
+        /* Section for contact form */
         .section {
             text-align: center;
         }
@@ -79,10 +79,10 @@
             color: var(--primary-color);
         }
 
-        /* Adjusting contact form window size */
+        /* Contact form with size adjustments */
         .contact-form {
-            max-width: 400px; /* Adjusted width for better sizing */
-            width: 100%;
+            max-width: 450px; /* Adjusted form width */
+            margin: 0 auto;
             background-color: var(--secondary-color);
             padding: 30px;
             border-radius: 10px;
@@ -133,12 +133,11 @@
             margin-top: 20px;
         }
 
-        /* Footer positioning restored to original */
+        /* Footer styling */
         footer {
             text-align: center;
             padding: 20px 40px;
             background-color: var(--bg-color);
-            position: relative; /* Ensures it's not fixed or changed */
         }
 
         /* Star Background */
@@ -150,6 +149,7 @@
             left: -50%;
             pointer-events: none;
             animation: rotateStars 120s linear infinite;
+            z-index: -1; /* Ensures stars are behind everything */
         }
 
         @keyframes rotateStars {
@@ -160,11 +160,6 @@
         @keyframes twinkle {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.2; }
-        }
-
-        @keyframes moveStars {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(100%); }
         }
     </style>
 </head>
