@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #00ffff;
+    --secondary-color: #ff00ff;
+    --bg-color: #000033;
+    --text-color: #ffffff;
+    --font-size-heading: 3.5rem; /* Consistent heading size */
+    --font-size-subheading: 3rem; /* Consistent subheading size */
+    --font-size-paragraph: 1.5rem; /* Consistent paragraph size */
+    --font-size-nav: 1.2rem; /* Consistent navigation font size */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Container for all page content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Navigation Styles */
+nav {
+    margin-bottom: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: var(--font-size-nav);
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Logo Styles */
+.logo img {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+    height: auto;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 40px;
+    background-color: var(--bg-color);
+}
+
+.hero h1 {
+    font-size: var(--font-size-heading);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px var(--primary-color);
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: var(--font-size-paragraph);
+    max-width: 600px;
+    margin: 0 auto 20px auto; /* Centered and margin bottom */
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Section Styles */
+.section {
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: var(--font-size-subheading);
+    margin-bottom: 30px;
+}
+
+.section p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 40px;
+    background-color: var(--secondary-color);
+    margin-top: 50px;
+    width: 100%; /* Ensure the footer spans the full width */
+}
+
+/* Video Styles */
+iframe {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%; /* Make sure the video fits within the page */
+    height: auto; /* Ensure responsive height */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 100%;
+    }
+
+    .section h2 {
+        font-size: 2.5rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+}
