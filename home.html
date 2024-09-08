@@ -4,8 +4,10 @@
     <base href="https://clearufo.space/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Clearufo.space</title>
+    <title>Home - ClearUFO.Space</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
         :root {
             --primary-color: #00ffff;
             --secondary-color: #ff00ff;
@@ -16,56 +18,55 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
         }
 
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 51, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px var(--primary-color);
         }
 
-        .logo {
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav ul {
             display: flex;
+            justify-content: center;
             align-items: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
         }
 
         .logo img {
             max-width: 200px;
             height: auto;
-        }
-
-        nav ul {
-            list-style-type: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
         }
 
         .hero {
@@ -75,13 +76,13 @@
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 3.5rem;
             color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 24px;
+            font-size: 1.5rem;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -107,10 +108,17 @@
             text-align: center;
         }
 
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
         footer {
             text-align: center;
             padding: 20px 40px;
-            background-color: var(--bg-color);
+            background-color: var(--secondary-color);
+            margin-top: 50px;
+            width: 100%; /* Ensure the footer spans the full width */
         }
 
         iframe {
@@ -120,22 +128,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <img src="logo.png" alt="ClearUFO Logo">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="home.html" class="active">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Navigation Links -->
+    <nav>
+        <ul>
+            <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
+    <div class="container">
         <section class="hero">
             <h1>Uncovering what most people miss.</h1>
             <p>Experimental Paranormal Video Forensics Services for anyone.</p>
@@ -155,7 +160,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 ClearUFO.space services. All rights reserved.</p>
+        <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
     </footer>
 </body>
 </html>
