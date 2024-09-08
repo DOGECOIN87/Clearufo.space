@@ -13,6 +13,10 @@
             --secondary-color: #ff00ff;
             --bg-color: #000033;
             --text-color: #ffffff;
+            --font-size-heading: 3.5rem; /* Adjust as per pricing.html */
+            --font-size-subheading: 3rem; /* Adjust as per pricing.html */
+            --font-size-paragraph: 1.5rem; /* Adjust as per pricing.html */
+            --font-size-nav: 1.2rem; /* Adjust as per pricing.html */
         }
 
         body, html {
@@ -30,13 +34,7 @@
             text-align: center;
         }
 
-        h1 {
-            font-size: 3.5rem; /* Same size as pricing page */
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
+        /* Navigation Styles */
         nav {
             margin-bottom: 20px;
         }
@@ -47,6 +45,7 @@
             align-items: center;
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         nav ul li {
@@ -56,7 +55,7 @@
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
-            font-size: 1.2rem; /* Matches navigation font size */
+            font-size: var(--font-size-nav);
             transition: color 0.3s ease;
         }
 
@@ -65,10 +64,13 @@
         }
 
         .logo img {
+            display: block;
+            margin: 0 auto;
             max-width: 200px;
             height: auto;
         }
 
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 100px 40px;
@@ -76,16 +78,18 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem; /* Matches the size from pricing.html */
-            color: var(--primary-color);
-            margin-bottom: 20px;
+            font-size: var(--font-size-heading); /* Ensures consistency with pricing.html */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             text-shadow: 0 0 10px var(--primary-color);
+            color: var(--primary-color);
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: var(--font-size-paragraph);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 20px auto; /* Centered and margin bottom */
+            line-height: 1.6;
         }
 
         .cta-button {
@@ -104,16 +108,25 @@
             background-color: #e0e0e0;
         }
 
+        /* Section Styles */
         .section {
             padding: 50px 40px;
             text-align: center;
         }
 
         .section h2 {
-            font-size: 3rem; /* Adjusted to match */
+            font-size: var(--font-size-subheading); /* Ensures consistency with pricing.html */
             margin-bottom: 30px;
         }
 
+        .section p {
+            font-size: 1.2rem; /* Adjust to match pricing.html */
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Footer Styles */
         footer {
             text-align: center;
             padding: 20px 40px;
@@ -122,9 +135,37 @@
             width: 100%; /* Ensure the footer spans the full width */
         }
 
+        /* Video Styles */
         iframe {
             display: block;
             margin: 20px auto;
+            max-width: 100%; /* Make sure the video fits within the page */
+            height: auto; /* Ensure responsive height */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                max-width: 100%;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .section p {
+                font-size: 1rem;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -147,11 +188,10 @@
             <p>Experimental Paranormal Video Forensics Services for anyone.</p>
             <a href="services.html" class="cta-button">Explore Services</a>
 
-            <!-- YouTube Video Embed -->
+            <!-- YouTube Video Embed, centered and responsive -->
             <iframe width="560" height="315" src="https://www.youtube.com/embed/xESjIzHuly4?autoplay=1" 
                     title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
+                    allowfullscreen></iframe>
         </section>
 
         <section class="section">
