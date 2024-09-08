@@ -5,9 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ClearUFO.Space</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Assuming you have linked the CSS file here -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- Assuming the external CSS file is here -->
     <style>
-        /* Responsive video container */
+        /* Container for the page */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Logo Styles */
+        .logo img {
+            max-width: 200px;  /* Limit the logo size */
+            height: auto;
+            display: block;
+            margin: 20px auto; /* Center the logo */
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: var(--bg-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Responsive Video Container */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -15,6 +69,7 @@
             overflow: hidden;
             max-width: 100%;
             background-color: #000;
+            margin: 20px auto;  /* Centering the video */
         }
 
         .video-container iframe {
@@ -23,6 +78,52 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: var(--secondary-color);
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .section p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -46,7 +147,7 @@
             <p>Experimental Paranormal Video Forensics Services for anyone.</p>
             <a href="services.html" class="cta-button">Explore Services</a>
 
-            <!-- Responsive YouTube Video Embed -->
+            <!-- Responsive Video Embed -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/xESjIzHuly4?autoplay=1" 
                         title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
