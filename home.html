@@ -5,167 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ClearUFO.Space</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Assuming you have linked the CSS file here -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
-
-        :root {
-            --primary-color: #00ffff;
-            --secondary-color: #ff00ff;
-            --bg-color: #000033;
-            --text-color: #ffffff;
-            --font-size-heading: 3.5rem; /* Adjust as per pricing.html */
-            --font-size-subheading: 3rem; /* Adjust as per pricing.html */
-            --font-size-paragraph: 1.5rem; /* Adjust as per pricing.html */
-            --font-size-nav: 1.2rem; /* Adjust as per pricing.html */
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background-color: #000;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        /* Navigation Styles */
-        nav {
-            margin-bottom: 20px;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: var(--font-size-nav);
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--secondary-color);
-        }
-
-        .logo img {
-            display: block;
-            margin: 0 auto;
-            max-width: 200px;
-            height: auto;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 40px;
-            background-color: var(--bg-color);
-        }
-
-        .hero h1 {
-            font-size: var(--font-size-heading); /* Ensures consistency with pricing.html */
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .hero p {
-            font-size: var(--font-size-paragraph);
-            max-width: 600px;
-            margin: 0 auto 20px auto; /* Centered and margin bottom */
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #e0e0e0;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .section h2 {
-            font-size: var(--font-size-subheading); /* Ensures consistency with pricing.html */
-            margin-bottom: 30px;
-        }
-
-        .section p {
-            font-size: 1.2rem; /* Adjust to match pricing.html */
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Footer Styles */
-        footer {
-            text-align: center;
-            padding: 20px 40px;
-            background-color: var(--secondary-color);
-            margin-top: 50px;
-            width: 100%; /* Ensure the footer spans the full width */
-        }
-
-        /* Video Styles */
-        iframe {
-            display: block;
-            margin: 20px auto;
-            max-width: 100%; /* Make sure the video fits within the page */
-            height: auto; /* Ensure responsive height */
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-                max-width: 100%;
-            }
-
-            .section h2 {
-                font-size: 2.5rem;
-            }
-
-            .section p {
-                font-size: 1rem;
-                max-width: 100%;
-            }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -183,23 +40,28 @@
     </nav>
 
     <div class="container">
+        <!-- Hero Section -->
         <section class="hero">
             <h1>Uncovering what most people miss.</h1>
             <p>Experimental Paranormal Video Forensics Services for anyone.</p>
             <a href="services.html" class="cta-button">Explore Services</a>
 
-            <!-- YouTube Video Embed, centered and responsive -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/xESjIzHuly4?autoplay=1" 
-                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
+            <!-- Responsive YouTube Video Embed -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/xESjIzHuly4?autoplay=1" 
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+            </div>
         </section>
 
+        <!-- Why Choose Us Section -->
         <section class="section">
             <h2>Why Choose Us?</h2>
             <p>With cutting-edge in-house developed techniques and a team of experts, we help bring to light mysteries hidden in your footage. Our techniques are reliable, confidential, and built on multiple years of experience.</p>
         </section>
     </div>
 
+    <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
     </footer>
