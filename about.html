@@ -7,7 +7,7 @@
     <title>About Us - ClearUFO.space</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
-        
+
         :root {
             --primary-color: #00ffff;
             --secondary-color: #ff00ff;
@@ -28,46 +28,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 51, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .logo img {
-            max-height: 50px; /* Adjust the logo size if needed */
-        }
-
-        nav ul {
-            list-style-type: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
         }
 
         .section {
@@ -103,49 +63,60 @@
             box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
         }
 
-        .mission-vision {
-            margin-top: 60px;
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav ul {
             display: flex;
-            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
         }
 
-        .mission, .vision {
-            flex: 1;
-            background-color: var(--secondary-color);
-            padding: 30px;
-            border-radius: 10px;
+        nav ul li {
+            margin: 0 15px;
         }
 
-        .mission h3, .vision h3 {
+        nav ul li a {
             color: var(--primary-color);
-            font-size: 24px;
-            margin-bottom: 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .logo img {
+            max-width: 200px;
+            height: auto;
         }
 
         footer {
             text-align: center;
             padding: 20px 40px;
-            background-color: var(--bg-color);
+            background-color: var(--secondary-color);
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <a href="index.html"><img src="logo.png" alt="ClearUFO.space Logo"></a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Navigation Links -->
+    <nav>
+        <ul>
+            <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
+    <div class="container">
         <section class="section">
             <h2>About Us</h2>
             <div class="about-content">
@@ -158,22 +129,11 @@
                     <img src="https://video-forensics-services.com/assets/lab-image.jpg" alt="Video forensics laboratory with advanced equipment">
                 </div>
             </div>
-
-            <div class="mission-vision">
-                <div class="mission">
-                    <h3>Our Mission</h3>
-                    <p>To provide the highest quality attention to detail & enhancement video forensics services, empowering our clients with accurate and actionable insights that bring clarity to complex investigations of special situations.</p>
-                </div>
-                <div class="vision">
-                    <h3>Our Vision</h3>
-                    <p>To be continuously pushing the boundaries of what's possible in digital evidence analysis and setting new standards for accuracy and reliability in this specific field.</p>
-                </div>
-            </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2024 ClearUFO.space services. All rights reserved.</p>
+        <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
     </footer>
 </body>
 </html>
