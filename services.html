@@ -14,6 +14,10 @@
             --bg-color: #000033;
             --text-color: #ffffff;
             --card-bg-color: rgba(255, 0, 255, 0.1); /* Semi-opaque background for cards */
+            --font-size-heading: 3.5rem; /* Font size for main headings */
+            --font-size-subheading: 3rem; /* Font size for subheadings */
+            --font-size-paragraph: 1.5rem; /* Font size for paragraphs */
+            --font-size-nav: 1.2rem; /* Font size for navigation */
         }
 
         body, html {
@@ -25,21 +29,13 @@
         }
 
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        /* Logo */
-        .logo img {
-            display: block;
-            margin: 0 auto;
-            max-width: 200px;
-            height: auto;
-        }
-
-        /* Navigation Styles */
+        /* Logo and Navigation Styles */
         nav {
             margin-bottom: 20px;
         }
@@ -59,7 +55,7 @@
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: var(--font-size-nav);
             transition: color 0.3s ease;
         }
 
@@ -67,16 +63,24 @@
             color: var(--secondary-color);
         }
 
-        /* Section */
+        .logo img {
+            display: block;
+            margin: 0 auto;
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Section and Heading Styles */
         .section {
             padding: 80px 40px;
             text-align: center;
         }
 
         .section h2 {
+            font-size: var(--font-size-heading);
             color: var(--primary-color);
-            font-size: 3.5rem;
             margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--primary-color);
         }
 
         /* Grid Styles */
@@ -101,17 +105,17 @@
         }
 
         .service-card h3 {
+            font-size: var(--font-size-subheading);
             color: var(--primary-color);
-            font-size: 2.5rem;
             margin-bottom: 15px;
         }
 
         .service-card p {
-            font-size: 1.5rem;
+            font-size: var(--font-size-paragraph);
             line-height: 1.6;
         }
 
-        /* Footer */
+        /* Footer Styles */
         footer {
             text-align: center;
             padding: 20px 40px;
@@ -139,6 +143,7 @@
             </ul>
         </nav>
 
+        <!-- Services Section -->
         <section class="section">
             <h2>Our Services</h2>
             <div class="services-grid">
