@@ -13,6 +13,7 @@
             --secondary-color: #ff00ff;
             --bg-color: #000033;
             --text-color: #ffffff;
+            --card-bg-color: rgba(255, 0, 255, 0.1); /* Semi-opaque background for cards */
         }
 
         body, html {
@@ -30,10 +31,9 @@
             text-align: center;
         }
 
-        /* Navigation Styles */
+        /* Logo and Navigation Styles */
         nav {
             margin-bottom: 20px;
-            padding: 20px 0; /* Add padding to control the space around the logo */
         }
 
         nav ul {
@@ -51,7 +51,7 @@
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.2rem; /* Same as pricing.html */
             transition: color 0.3s ease;
         }
 
@@ -60,9 +60,10 @@
         }
 
         .logo img {
-            max-width: 200px;
+            max-width: 200px; /* Same as pricing.html */
             height: auto;
-            margin: 0; /* Ensure no extra margin */
+            padding: 0; /* Ensure no extra padding */
+            margin: 0; /* Ensure no extra margins */
         }
 
         /* Section and Heading Styles */
@@ -76,6 +77,38 @@
             color: var(--primary-color);
             margin-bottom: 30px;
             text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Grid Styles */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg-color); /* Semi-opaque background */
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.1); /* Semi-transparent shadow */
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card h3 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 1.5rem;
+            line-height: 1.6;
         }
 
         /* Footer Styles */
@@ -99,7 +132,7 @@
             <ul>
                 <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="about.html">About</a></li> <!-- Corrected link -->
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="contact.html">Contact</a></li>
