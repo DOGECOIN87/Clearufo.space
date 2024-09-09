@@ -18,231 +18,145 @@
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Ensure footer stays at the bottom */
         }
 
-        /* Container for all content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px;
-            flex-grow: 1; /* Ensures the main content takes up space */
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        /* Header with logo and navigation */
-        header {
-            display: flex;
-            justify-content: space-between; /* Fixes alignment */
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 51, 0.8);
-            z-index: 1000;
-        }
-
-        .logo img {
-            max-width: 200px;
+        /* Logo and Navigation Styles */
+        nav {
+            margin-bottom: 20px;
         }
 
         nav ul {
-            list-style-type: none;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
         }
 
         nav ul li {
-            margin-left: 20px;
+            margin: 0 15px;
         }
 
         nav ul li a {
-            color: var(--text-color);
+            color: var(--primary-color);
             text-decoration: none;
+            font-size: 1.2rem;
             transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
 
-        /* Section for contact form */
-        .section {
-            text-align: center;
+        .logo img {
+            max-width: 200px;
+            height: auto;
+            padding: 0;
+            margin: 0;
         }
 
-        .section h2 {
-            font-size: 36px;
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .contact-section {
+            margin: 40px 0;
+        }
+
+        .contact-section p {
+            font-size: 1.5rem;
+            line-height: 1.6;
             margin-bottom: 30px;
-            color: var(--primary-color);
         }
 
-        /* Contact form with size adjustments */
-        .contact-form {
-            max-width: 450px; /* Adjusted form width */
+        .contact-section form {
+            max-width: 600px;
             margin: 0 auto;
-            background-color: var(--secondary-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-color);
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .contact-section form input,
+        .contact-section form textarea {
             width: 100%;
-            padding: 10px;
-            border: none;
+            padding: 12px;
+            margin: 10px 0;
             border-radius: 5px;
-            background-color: var(--bg-color);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(17, 17, 68, 0.7);
             color: var(--text-color);
+            font-family: 'Rajdhani', sans-serif;
         }
 
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
+        .contact-section form button {
+            padding: 12px 24px;
             background-color: var(--primary-color);
             color: var(--bg-color);
             border: none;
-            padding: 12px 24px;
             border-radius: 5px;
+            font-size: 1.2rem;
             cursor: pointer;
-            font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
-        .submit-btn:hover {
-            background-color: #e0e0e0;
+        .contact-section form button:hover {
+            background-color: var(--secondary-color);
         }
 
-        .contact-info {
-            margin-top: 20px;
-        }
-
-        /* Footer styling */
         footer {
             text-align: center;
             padding: 20px 40px;
-            background-color: var(--bg-color);
+            background-color: var(--secondary-color);
+            margin-top: 50px;
         }
 
-        /* Star Background */
-        .stars {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            pointer-events: none;
-            animation: rotateStars 120s linear infinite;
-            z-index: -1; /* Ensures stars are behind everything */
-        }
-
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
+        footer p {
+            margin: 0;
+            color: var(--bg-color);
         }
     </style>
 </head>
 <body>
-    <!-- Star Background -->
-    <svg class="stars" xmlns="http://www.w3.org/2000/svg">
-        <script>
-            const starsSvg = document.querySelector('.stars');
-            for (let i = 0; i < 200; i++) {
-                const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                star.setAttribute("cx", Math.random() * 100 + "%");
-                star.setAttribute("cy", Math.random() * 100 + "%");
-                star.setAttribute("r", Math.random() * 1.5 + 0.5);
-                star.setAttribute("fill", "white");
-                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
-                starsSvg.appendChild(star);
-            }
-        </script>
-    </svg>
-
     <div class="container">
-        <header>
-            <div class="logo">
-                <img src="logo.png" alt="ClearUFO Logo">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
 
-        <section class="section">
-            <h2>Contact Us</h2>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject:</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-
-            <div class="contact-info">
-                <p>Email: mattrickbeats@gmail.com</p>
-            </div>
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h1>Contact Us</h1>
+            <p>If you have any questions, feel free to reach out to us by filling out the form below.</p>
+            <form action="/submit-form" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </section>
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 ClearUFO.space services. All rights reserved.</p>
+        <p>&copy; 2024 ClearUFO.space. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const form = document.getElementById('contactForm');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const formData = new FormData(form);
-                for (let [key, value] of formData.entries()) {
-                    console.log(`${key}: ${value}`);
-                }
-                alert('Thank you for your message. We will get back to you soon!');
-                form.reset();
-            });
-        });
-    </script>
 </body>
 </html>
