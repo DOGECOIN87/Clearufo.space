@@ -38,6 +38,11 @@
         /* Logo and Navigation Styles */
         nav {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 51, 0.8); /* Matches navigation background in pricing.html */
+            padding: 20px;
         }
 
         nav ul {
@@ -46,6 +51,7 @@
             align-items: center;
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         nav ul li {
@@ -56,6 +62,7 @@
             color: var(--primary-color);
             text-decoration: none;
             font-size: var(--font-size-nav);
+            font-weight: 700; /* Ensure boldness matches pricing.html */
             transition: color 0.3s ease;
         }
 
@@ -63,9 +70,12 @@
             color: var(--secondary-color);
         }
 
+        .logo {
+            margin-right: auto; /* Ensures logo aligns to the left while nav links stay centered */
+        }
+
         .logo img {
             display: block;
-            margin: 0 auto;
             max-width: 200px;
             height: auto;
         }
@@ -133,8 +143,10 @@
     <div class="container">
         <!-- Navigation -->
         <nav>
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a>
+            </div>
             <ul>
-                <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="about.html">About</a></li>
