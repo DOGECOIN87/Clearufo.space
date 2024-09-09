@@ -14,10 +14,6 @@
             --bg-color: #000033;
             --text-color: #ffffff;
             --card-bg-color: rgba(255, 0, 255, 0.1); /* Semi-opaque background for cards */
-            --font-size-heading: 3.5rem; /* Font size for main headings */
-            --font-size-subheading: 3rem; /* Font size for subheadings */
-            --font-size-paragraph: 1.5rem; /* Font size for paragraphs */
-            --font-size-nav: 1.2rem; /* Font size for navigation */
         }
 
         body, html {
@@ -38,10 +34,6 @@
         /* Logo and Navigation Styles */
         nav {
             margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between; /* Ensure space between logo and links */
-            align-items: center; /* Proper vertical alignment */
-            padding: 20px 0; /* Added padding for better spacing */
         }
 
         nav ul {
@@ -50,18 +42,16 @@
             align-items: center;
             list-style: none;
             padding: 0;
-            margin: 0;
         }
 
         nav ul li {
-            margin: 0 25px; /* Increased spacing between navigation links */
+            margin: 0 15px;
         }
 
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
-            font-size: var(--font-size-nav);
-            font-weight: 700; /* Ensure boldness matches pricing.html */
+            font-size: 1.2rem; /* Same as pricing.html */
             transition: color 0.3s ease;
         }
 
@@ -69,15 +59,9 @@
             color: var(--secondary-color);
         }
 
-        .logo {
-            margin-left: 20px; /* Ensure space from the edge */
-        }
-
         .logo img {
-            display: block;
-            max-width: 200px;
+            max-width: 200px; /* Same size as pricing.html */
             height: auto;
-            vertical-align: middle; /* Ensure vertical alignment with the nav links */
         }
 
         /* Section and Heading Styles */
@@ -87,7 +71,7 @@
         }
 
         .section h2 {
-            font-size: var(--font-size-heading);
+            font-size: 3.5rem;
             color: var(--primary-color);
             margin-bottom: 30px;
             text-shadow: 0 0 10px var(--primary-color);
@@ -115,13 +99,13 @@
         }
 
         .service-card h3 {
-            font-size: var(--font-size-subheading);
+            font-size: 3rem;
             color: var(--primary-color);
             margin-bottom: 15px;
         }
 
         .service-card p {
-            font-size: var(--font-size-paragraph);
+            font-size: 1.5rem;
             line-height: 1.6;
         }
 
@@ -143,13 +127,11 @@
     <div class="container">
         <!-- Navigation -->
         <nav>
-            <div class="logo">
-                <a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a>
-            </div>
             <ul>
+                <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li> <!-- Corrected link -->
                 <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="about.html">About</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
