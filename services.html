@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - ClearUFO.space</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
         :root {
             --primary-color: #00ffff;
             --secondary-color: #ff00ff;
             --bg-color: #000033;
             --text-color: #ffffff;
+            --card-bg-color: rgba(255, 0, 255, 0.1); /* Semi-opaque background for cards */
         }
 
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
         }
@@ -28,42 +31,43 @@
             padding: 40px;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 51, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        /* Logo */
+        .logo img {
+            display: block;
+            margin: 0 auto;
+            max-width: 200px;
+            height: auto;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
+        /* Navigation Styles */
+        nav {
+            margin-bottom: 20px;
         }
 
         nav ul {
-            list-style-type: none;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
         }
 
         nav ul li {
-            margin-left: 20px;
+            margin: 0 15px;
         }
 
         nav ul li a {
-            color: var(--text-color);
+            color: var(--primary-color);
             text-decoration: none;
+            font-size: 1.2rem;
             transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
 
+        /* Section */
         .section {
             padding: 80px 40px;
             text-align: center;
@@ -71,10 +75,11 @@
 
         .section h2 {
             color: var(--primary-color);
-            font-size: 36px;
+            font-size: 3.5rem;
             margin-bottom: 30px;
         }
 
+        /* Grid Styles */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -82,89 +87,82 @@
         }
 
         .service-card {
-            background-color: var(--secondary-color);
+            background-color: var(--card-bg-color); /* Semi-opaque background */
             border-radius: 10px;
             padding: 30px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.1); /* Semi-transparent shadow */
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
         }
 
         .service-card h3 {
             color: var(--primary-color);
-            font-size: 24px;
+            font-size: 2.5rem;
             margin-bottom: 15px;
         }
 
         .service-card p {
-            font-size: 16px;
+            font-size: 1.5rem;
             line-height: 1.6;
         }
 
-        .service-icon {
-            font-size: 48px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px 40px;
-            background-color: var(--bg-color);
+            background-color: var(--secondary-color);
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--bg-color);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="logo">
-                Clear UFO - Services
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
         <section class="section">
             <h2>Our Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🔍</div>
                     <h3>Video Enhancement</h3>
                     <p>Improve clarity and visibility of hidden details in your video evidence using in-house developed forensic techniques.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔐</div>
                     <h3>Authentication</h3>
                     <p>Verify the integrity and authenticity of your video footage to ensure it hasn't been tampered with.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">⏱️</div>
                     <h3>Timestamp Analysis</h3>
                     <p>Determine precise timing of events in your video evidence, crucial for establishing timelines in investigations.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">👤</div>
                     <h3>Annotations</h3>
                     <p>Identify entities in video footage making it easier to share with others.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🎯</div>
                     <h3>Object Detection</h3>
                     <p>Locate and track specific objects or elements within video sequences, useful for gathering evidence.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
                     <h3>Metadata Analysis</h3>
                     <p>Extract and analyze hidden metadata from video files to uncover additional contextual information.</p>
                 </div>
@@ -172,24 +170,9 @@
         </section>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 ClearUFO.space services. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const serviceCards = document.querySelectorAll('.service-card');
-            serviceCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-10px)';
-                    card.style.boxShadow = '0 10px 20px rgba(255, 255, 255, 0.1)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0)';
-                    card.style.boxShadow = 'none';
-                });
-            });
-        });
-    </script>
 </body>
 </html>
