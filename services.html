@@ -39,10 +39,9 @@
         nav {
             margin-bottom: 20px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 51, 0.8); /* Matches navigation background in pricing.html */
-            padding: 20px;
+            justify-content: space-between; /* Ensure space between logo and links */
+            align-items: center; /* Proper vertical alignment */
+            padding: 20px 0; /* Added padding for better spacing */
         }
 
         nav ul {
@@ -55,7 +54,7 @@
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 0 25px; /* Increased spacing between navigation links */
         }
 
         nav ul li a {
@@ -71,13 +70,14 @@
         }
 
         .logo {
-            margin-right: auto; /* Ensures logo aligns to the left while nav links stay centered */
+            margin-left: 20px; /* Ensure space from the edge */
         }
 
         .logo img {
             display: block;
             max-width: 200px;
             height: auto;
+            vertical-align: middle; /* Ensure vertical alignment with the nav links */
         }
 
         /* Section and Heading Styles */
