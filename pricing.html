@@ -23,7 +23,7 @@
             color: var(--text-color);
         }
 
-        .container {
+       .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -37,18 +37,18 @@
             text-shadow: 0 0 10px var(--primary-color);
         }
 
-        .pricing-subtitle {
+       .pricing-subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .pricing-grid {
+       .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        .plan {
+       .plan {
             background-color: rgba(17, 17, 68, 0.7); /* Semi-opaque background */
             padding: 30px;
             border-radius: 12px;
@@ -58,18 +58,18 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .plan:hover {
+       .plan:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
         }
 
-        .plan h2 {
+       .plan h2 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--primary-color);
         }
 
-        .plan .price {
+       .plan.price {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
@@ -101,7 +101,7 @@
             color: var(--secondary-color);
         }
 
-        .logo img {
+       .logo img {
             max-width: 200px;
             height: auto;
         }
@@ -135,24 +135,30 @@
             <!-- Single Image -->
             <div class="plan">
                 <h2>Image Enhancement</h2>
-                <div class="price">$19.99 - $49.99 <span>/mo</span></div>
-                <p class="features">• 1 Image<br>• Advanced Processing<br>• Free Consultation</p>
+                <div class="price">$19.99 - $49.99</div>
+                <p class="features">• 1 Image
+• Advanced Processing
+• Free Consultation</p>
                 <button>Choose Now</button>
             </div>
 
             <!-- Multiple Images -->
             <div class="plan">
                 <h2>Image Enhancement</h2>
-                <div class="price">$14.99 - $34.99 <span>/mo</span></div>
-                <p class="features">• Covers Multiple Images<br>• Advanced Processing<br>• Free Consultation</p>
+                <div class="price">$14.99 - $34.99</div>
+                <p class="features">• Covers Multiple Images
+• Advanced Processing
+• Free Consultation</p>
                 <button>Choose Now</button>
             </div>
 
             <!-- Video -->
             <div class="plan">
                 <h2>Video Enhancement</h2>
-                <div class="price">$99.99 - $249.99<span>/mo</span></div>
-                <p class="features">• Pricing consideration based on length & complexity<br>• Advanced Processing<br>• Free Consultation</p>
+                <div class="price">$99.99 - $249.99</div>
+                <p class="features">• Pricing consideration based on length & complexity
+• Advanced Processing
+• Free Consultation</p>
                 <button>Choose Now</button>
             </div>
         </div>
