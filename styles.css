@@ -56,7 +56,7 @@ nav ul li a:hover {
 }
 
 /* Logo Styles */
-.logo img {
+img {
     display: block;
     margin: 0 auto;
     max-width: 200px;
@@ -138,25 +138,45 @@ iframe {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .hero {
+   .hero {
         padding: 60px 20px;
     }
 
-    .hero h1 {
+   .hero h1 {
         font-size: 2.5rem;
     }
 
-    .hero p {
+   .hero p {
         font-size: 1.2rem;
         max-width: 100%;
     }
 
-    .section h2 {
+   .section h2 {
         font-size: 2.5rem;
     }
 
-    .section p {
+   .section p {
         font-size: 1rem;
         max-width: 100%;
     }
+}
+
+/* Contact Form Styles */
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-section form input,
+.contact-section form textarea {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(17, 17, 68, 0.7);
+    color: var(--text-color);
+    font-family: 'Rajdhani', sans-serif;
 }
