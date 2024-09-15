@@ -2,7 +2,7 @@
 // contact.php
 
 // Configuration
-$recipientEmail = 'your-email@example.com'; // Replace with your email
+$recipientEmail = 'mattrickbeats@gmail.com; // Replace with your email
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
