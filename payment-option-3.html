@@ -163,6 +163,74 @@
             background-color: var(--secondary-color);
             margin-top: 50px;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #111144;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid var(--primary-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+        }
+
+        .close-button {
+            color: var(--primary-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--secondary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #modal-title {
+            margin-bottom: 20px;
+        }
+
+        #modal-address {
+            font-size: 1.2rem;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+
+        #copy-button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #copy-button:hover {
+            background-color: var(--secondary-color);
+        }
     </style>
 </head>
 <body>
@@ -183,23 +251,23 @@
 
         <h2>Select a Payment Method</h2>
         <div class="payment-options">
-            <div class="payment-option">
+            <div class="payment-option" data-address="3MiZECN9AY5dbVo8Je3t3a6r8Frtog5zgA">
                 <img src="btc-qr-code.png" alt="Bitcoin QR Code">
                 <p>Bitcoin</p>
             </div>
-            <div class="payment-option">
+            <div class="payment-option" data-address="0x706336B7B9689Fd0144F568b5f733Fd2aBf59ec6">
                 <img src="eth-qr-code.png" alt="Ethereum QR Code">
                 <p>Ethereum</p>
             </div>
-            <div class="payment-option">
+            <div class="payment-option" data-address="D9LTj42XoLumvJfkwUTUDcfH93CJtN5niN">
                 <img src="doge-qr-code.png" alt="Dogecoin QR Code">
                 <p>Dogecoin</p>
             </div>
-            <div class="payment-option">
+            <div class="payment-option" data-address="EPvSedny369FfpTwHwZ3dkH7Vsko9Gs6h666Kwtk8FCM">
                 <img src="sol-qr-code.png" alt="Solana QR Code">
                 <p>Solana</p>
             </div>
-            <div class="payment-option">
+            <div class="payment-option" data-address="@Clearufo">
                 <img src="cashapp-qr-code.png" alt="Cash App QR Code">
                 <p>Cash App</p>
             </div>
@@ -216,6 +284,7 @@
             <label for="email">Your Email:</label>
             <input type="email" name="email" id="email" required>
 
+            <label for="payment-details">Payment Transaction ID
             <label for="payment-details">Payment Transaction ID or Details:</label>
             <textarea name="payment-details" id="payment-details" rows="4" required></textarea>
 
@@ -227,8 +296,82 @@
         </div>
     </div>
 
+    <!-- Modal Window -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title">Payment Address</h2>
+            <p id="modal-address">[Address will be displayed here]</p>
+            <button id="copy-button">Copy Address</button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modal elements
+            var modal = document.getElementById('modal');
+            var modalTitle = document.getElementById('modal-title');
+            var modalAddress = document.getElementById('modal-address');
+            var copyButton = document.getElementById('copy-button');
+            var closeButton = document.querySelector('.close-button');
+
+            // Get all payment options
+            var paymentOptions = document.querySelectorAll('.payment-option');
+
+            // Add click event listener to each payment option
+            paymentOptions.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    var address = option.getAttribute('data-address');
+                    var paymentMethod = option.querySelector('p').innerText;
+
+                    // Set modal content
+                    modalTitle.innerText = paymentMethod + ' Address';
+                    modalAddress.innerText = address;
+
+                    // Show the modal
+                    modal.style.display = 'block';
+                });
+            });
+
+            // Add event listener to close button
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Copy to clipboard functionality
+            copyButton.addEventListener('click', function() {
+                var addressText = modalAddress.innerText;
+
+                // Create a temporary textarea element to copy the text
+                var tempInput = document.createElement('textarea');
+                tempInput.value = addressText;
+                document.body.appendChild(tempInput);
+
+                // Select the text
+                tempInput.select();
+                tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+
+                // Copy the text inside the textarea
+                document.execCommand('copy');
+
+                // Remove the temporary textarea
+                document.body.removeChild(tempInput);
+
+                // Optional: Alert the copied text or display a message
+                alert('Address copied to clipboard');
+            });
+        });
+    </script>
 </body>
 </html>
