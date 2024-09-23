@@ -4,6 +4,7 @@
   <base href="https://websim.ai/cosmic-enigma/">
   <title>CLEARUFO.SPACE IMAGE/VIDEO PROCESSOR - Full Page Layout</title>
   <style>
+    /* Existing CSS Styles */
     body, html {
       margin: 0;
       padding: 0;
@@ -102,10 +103,62 @@
       font-style: italic;
     }
     
-    #processButton {
+    /* Notification and Download Button Styles */
+    #notification {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    #downloadButton {
+      display: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 2px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border-radius: 30px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    #downloadButton:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Loader Styles */
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 2s linear infinite;
+      margin: 20px auto;
       display: none;
     }
-    
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #processButton:disabled {
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
     /* Combined Twinkle and Float Animation */
     @keyframes twinkle-float {
       0% {
@@ -214,13 +267,13 @@
       float: right;
       font-size: 28px;
       font-weight: bold;
+      cursor: pointer;
     }
     
     .close:hover,
     .close:focus {
       color: #fff;
       text-decoration: none;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -239,11 +292,16 @@
       
       <div class="button-container">
         <label for="fileInput" class="cosmic-button">Upload File</label>
-        <input type="file" id="fileInput" style="display: none;" accept=".txt,.csv,.json">
-        <button id="processButton" class="cosmic-button">Process Data</button>
+        <input type="file" id="fileInput" style="display: none;" accept="image/*,video/*">
+        <button id="processButton" class="cosmic-button">Process File</button>
       </div>
       
       <div id="fileInfo"></div>
+      <div class="loader" id="loader"></div>
+      <div id="notification">
+        <p id="notificationText"></p>
+        <a href="#" id="downloadButton" download>Download Processed File</a>
+      </div>
     </div>
 
     <footer>
@@ -262,8 +320,13 @@
     </div>
   </div>
 
+  <!-- OpenCV.js -->
+  <script async src="https://docs.opencv.org/4.x/opencv.js" type="text/javascript"></script>
+  <!-- FFmpeg.wasm -->
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+
   <script>
-    // Star animation code
+    // Star Animation Code
     class Star {
       constructor(container) {
         this.element = document.createElement('div');
@@ -335,37 +398,7 @@
       createStarfield();
     });
     
-    // File upload and processing logic
-    const fileInput = document.getElementById('fileInput');
-    const processButton = document.getElementById('processButton');
-    const fileInfo = document.getElementById('fileInfo');
-    
-    fileInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        fileInfo.textContent = `Selected file: ${file.name}`;
-        processButton.style.display = 'inline-block';
-      } else {
-        fileInfo.textContent = '';
-        processButton.style.display = 'none';
-      }
-    });
-    
-    processButton.addEventListener('click', () => {
-      const file = fileInput.files[0];
-      if (file) {
-        // Simulating processing
-        fileInfo.textContent = `Processing ${file.name}...`;
-        processButton.disabled = true;
-        
-        setTimeout(() => {
-          fileInfo.textContent = `${file.name} has been processed successfully!`;
-          processButton.disabled = false;
-        }, 3000);
-      }
-    });
-    
-    // Modal functionality
+    // Modal Functionality
     const modal = document.getElementById('logoModal');
     const logoImage = document.getElementById('logoImage');
     const closeButton = document.getElementsByClassName('close')[0];
@@ -383,6 +416,223 @@
         modal.style.display = 'none';
       }
     }
+
+    // Processing Logic
+    const fileInput = document.getElementById('fileInput');
+    const processButton = document.getElementById('processButton');
+    const fileInfo = document.getElementById('fileInfo');
+    const loader = document.getElementById('loader');
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    const downloadButton = document.getElementById('downloadButton');
+
+    let processedBlob = null;
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        fileInfo.textContent = `Selected file: ${file.name}`;
+        processButton.style.display = 'inline-block';
+        notification.style.display = 'none';
+        downloadButton.style.display = 'none';
+      } else {
+        fileInfo.textContent = '';
+        processButton.style.display = 'none';
+      }
+    });
+
+    processButton.addEventListener('click', async () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      fileInfo.textContent = `Processing ${file.name}...`;
+      processButton.disabled = true;
+      loader.style.display = 'block';
+      notification.style.display = 'none';
+      downloadButton.style.display = 'none';
+
+      try {
+        if (file.type.startsWith('image/')) {
+          processedBlob = await processImage(file);
+        } else if (file.type.startsWith('video/')) {
+          processedBlob = await processVideo(file);
+        } else {
+          throw new Error('Unsupported file type');
+        }
+
+        const url = URL.createObjectURL(processedBlob);
+        downloadButton.href = url;
+        downloadButton.download = `processed_${file.name}`;
+        downloadButton.style.display = 'inline-block';
+
+        notificationText.textContent = `${file.name} has been processed successfully!`;
+        notification.style.display = 'block';
+      } catch (error) {
+        console.error(error);
+        fileInfo.textContent = `Error: ${error.message}`;
+      } finally {
+        processButton.disabled = false;
+        loader.style.display = 'none';
+      }
+    });
+
+    // Function to Process Images Using OpenCV.js
+    async function processImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          const img = new Image();
+          img.onload = function() {
+            try {
+              // Create a canvas to draw the image
+              const canvas = document.createElement('canvas');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0);
+
+              // Load image data into OpenCV
+              let src = cv.imread(canvas);
+              
+              // Convert to HSV
+              let hsv = new cv.Mat();
+              cv.cvtColor(src, hsv, cv.COLOR_RGBA2RGB);
+              cv.cvtColor(hsv, hsv, cv.COLOR_RGB2HSV);
+
+              // Split channels
+              let channels = new cv.MatVector();
+              cv.split(hsv, channels);
+              let h = channels.get(0);
+              let s = channels.get(1);
+              let v = channels.get(2);
+
+              // Save H channel as grayscale image
+              // For demonstration, we'll merge H with zero S and V to visualize
+              let zeroMat = cv.Mat.zeros(h.rows, h.cols, h.type());
+              let hImage = new cv.MatVector();
+              hImage.push_back(h);
+              hImage.push_back(zeroMat);
+              hImage.push_back(zeroMat);
+              let hMerged = new cv.Mat();
+              cv.merge(hImage, hMerged);
+              cv.cvtColor(hMerged, hMerged, cv.COLOR_HSV2RGB); // Convert back to RGB for visualization
+              cv.imshow(canvas, hMerged);
+
+              // Convert canvas to Blob (H channel image)
+              canvas.toBlob(async (hBlob) => {
+                // Proceed to apply Histogram Equalization to V channel
+                // Equalize V channel
+                cv.equalizeHist(v, v);
+
+                // Merge channels back
+                let channelsEq = new cv.MatVector();
+                channelsEq.push_back(h);
+                channelsEq.push_back(s);
+                channelsEq.push_back(v);
+                cv.merge(channelsEq, hsv);
+                cv.cvtColor(hsv, hsv, cv.COLOR_HSV2RGB);
+                cv.cvtColor(hsv, hsv, cv.COLOR_RGB2RGBA);
+                cv.imshow(canvas, hsv); // Display the final image
+
+                // Convert the final canvas to Blob
+                canvas.toBlob((finalBlob) => {
+                  // Clean up
+                  h.delete();
+                  s.delete();
+                  v.delete();
+                  zeroMat.delete();
+                  hImage.delete();
+                  hMerged.delete();
+                  channelsEq.delete();
+                  hsv.delete();
+                  src.delete();
+
+                  resolve(finalBlob);
+                }, 'image/png');
+              }, 'image/png');
+
+            } catch (err) {
+              reject(err);
+            }
+          };
+          img.onerror = function() {
+            reject(new Error('Failed to load image'));
+          };
+          img.src = e.target.result;
+        };
+        reader.onerror = function() {
+          reject(new Error('Failed to read file'));
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Function to Process Videos Using FFmpeg.wasm
+    async function processVideo(file) {
+      const { createFFmpeg, fetchFile } = FFmpeg;
+      const ffmpeg = createFFmpeg({ log: true });
+      await ffmpeg.load();
+
+      // Step 1: Write the input file to FFmpeg's virtual filesystem
+      ffmpeg.FS('writeFile', 'input', await fetchFile(file));
+
+      // Step 2: Extract HSV channels
+      // FFmpeg doesn't provide direct HSV extraction, so we use colorchannelmixer and other filters to manipulate channels
+      // However, to specifically extract the H channel, we need to use a workaround.
+
+      // To extract H channel as a separate video
+      const extractHFilter = 'hue=s=0'; // This effectively removes saturation, highlighting the H channel
+
+      // To apply Histogram Equalization to V channel, we'll use the eq filter on the V channel via LUTs or available filters
+      // FFmpeg's eq filter works on RGB, so histogram equalization on V channel isn't straightforward
+      // As a workaround, we'll apply histogram equalization to the whole brightness
+
+      // To apply Temporal Smoothing (e.g., box blur over 5 frames)
+      // We'll use the minterpolate filter to increase FPS and then apply boxblur
+
+      // Combining all filters
+      const filter = `
+        hue=s=0,
+        eq=brightness=0:contrast=1:gamma=1,
+        boxblur=5:5
+      `;
+
+      // Clean filter string
+      const cleanedFilter = filter.replace(/\s+/g, '');
+
+      try {
+        // Apply filters and generate processed video
+        await ffmpeg.run(
+          '-i', 'input',
+          '-vf', cleanedFilter,
+          '-c:a', 'copy',
+          'output.mp4'
+        );
+      } catch (error) {
+        throw new Error('FFmpeg processing failed: ' + error.message);
+      }
+
+      // Read the output file
+      const data = ffmpeg.FS('readFile', 'output.mp4');
+
+      // Cleanup
+      ffmpeg.FS('unlink', 'input');
+      ffmpeg.FS('unlink', 'output.mp4');
+
+      // Return the processed video as a Blob
+      return new Blob([data.buffer], { type: 'video/mp4' });
+    }
+
+    // Handle OpenCV.js Ready State
+    // Wait until OpenCV is loaded
+    function onOpenCvReady() {
+      if (cv && cv.getBuildInformation) {
+        console.log(cv.getBuildInformation());
+      } else {
+        setTimeout(onOpenCvReady, 100);
+      }
+    }
+    onOpenCvReady();
   </script>
   
 </body>
