@@ -4,9 +4,105 @@
   <base href="https://websim.ai/cosmic-enigma/">
   <title>CLEARUFO.SPACE IMAGE/VIDEO PROCESSOR - Full Page Layout</title>
   <style>
-    /* [Your existing CSS styles here...] */
-    /* ... (omitted for brevity, use the provided CSS from your original HTML) ... */
-    /* Add styles for the download button and notification */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .glowing-window {
+      background-color: rgba(25, 25, 35, 0.6);
+      border-radius: 15px;
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 0 20px rgba(100, 100, 255, 0.3),
+                  0 0 60px rgba(100, 100, 255, 0.1);
+      backdrop-filter: blur(5px);
+      animation: glow 4s infinite alternate;
+      margin: auto 0;
+    }
+    
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 20px rgba(100, 100, 255, 0.3),
+                    0 0 60px rgba(100, 100, 255, 0.1);
+      }
+      100% {
+        box-shadow: 0 0 25px rgba(100, 100, 255, 0.4),
+                    0 0 70px rgba(100, 100, 255, 0.2);
+      }
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .button-container {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    
+    .cosmic-button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 2px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border-radius: 30px;
+    }
+    
+    .cosmic-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    
+    #fileInfo {
+      margin-top: 20px;
+      font-style: italic;
+    }
+    
+    /* Notification and Download Button Styles */
     #notification {
       display: none;
       margin-top: 20px;
@@ -195,16 +291,22 @@
       
       <div class="button-container">
         <label for="fileInput" class="cosmic-button">Upload File</label>
+        <!-- Updated accept attribute -->
         <input type="file" id="fileInput" style="display: none;" accept="image/*,video/*">
-        <button id="processButton" class="cosmic-button">Process File</button>
+        <button id="processButton" class="cosmic-button">Process Data</button>
       </div>
       
       <div id="fileInfo"></div>
+      
+      <!-- Added Loader -->
       <div class="loader" id="loader"></div>
+      
+      <!-- Added Notification -->
       <div id="notification">
         <p id="notificationText"></p>
         <a href="#" id="downloadButton" download>Download Processed File</a>
       </div>
+      
     </div>
 
     <footer>
@@ -229,7 +331,7 @@
   <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 
   <script>
-    // Star Animation Code
+    // Star animation code
     class Star {
       constructor(container) {
         this.element = document.createElement('div');
@@ -301,7 +403,7 @@
       createStarfield();
     });
     
-    // Modal Functionality
+    // Modal functionality
     const modal = document.getElementById('logoModal');
     const logoImage = document.getElementById('logoImage');
     const closeButton = document.getElementsByClassName('close')[0];
@@ -444,33 +546,8 @@
           const hEqData = ffmpeg.FS('readFile', 'h_eq.png');
           const hEqBlob = new Blob([hEqData.buffer], { type: 'image/png' });
   
-          // Step 2: Extract V channel, apply Histogram Equalization
-          // Extract V channel
-          const filterV = `
-            [0:v] split=2 [v][orig];
-            [v] hue=s=0, colorchannelmixer=0.0:0.0:1.0:0.0:0.0:0.0:0.0:0.0:0.0, format=gray, histeq [v_eq]
-          `;
-  
-          await ffmpeg.run(
-            '-i', 'input',
-            '-filter_complex', filterV,
-            '-map', '[v_eq]',
-            '-c:v', 'png',
-            'v_eq.png'
-          );
-  
-          // Read the processed V channel
-          const vEqData = ffmpeg.FS('readFile', 'v_eq.png');
-          const vEqBlob = new Blob([vEqData.buffer], { type: 'image/png' });
-  
-          // Note: For accurate H and V manipulation, deeper processing would be required.
-          // FFmpeg's capabilities are limited for per-channel histogram equalization without affecting others.
-  
-          // Step 3: Temporal Smoothing (for videos)
-          // Apply Temporal Smoothing over 5 frames using minterpolate with fps=desired
-          // Alternatively, use tblend to average over frames
-  
-          // For simplicity, using tblend with average over 5 frames
+          // Step 2: Temporal Smoothing (for videos)
+          // Apply Temporal Smoothing over 5 frames using tblend=average
           const filterVideo = `
             [0:v] tblend=average, framestep=5 [out]
           `;
@@ -478,9 +555,9 @@
           await ffmpeg.run(
             '-i', 'input',
             '-filter_complex', filterVideo,
-            '-c:v', 'libx264',
-            '-crf', '18',
-            '-preset', 'veryfast',
+            '-c:v', 'libxvid',
+            '-q:v', '5',
+            '-g', '10',
             'output.mp4'
           );
   
@@ -491,7 +568,6 @@
           // Cleanup
           ffmpeg.FS('unlink', 'input');
           ffmpeg.FS('unlink', 'h_eq.png');
-          ffmpeg.FS('unlink', 'v_eq.png');
           ffmpeg.FS('unlink', 'output.mp4');
   
           resolve(outputBlob);
@@ -528,16 +604,14 @@
       downloadButton.style.display = 'none';
   
       try {
-        await initFFmpeg();
+        await initFFmpeg(); // Ensure FFmpeg is loaded
   
         if (file.type.startsWith('image/')) {
           // Process Image
           processedBlob = await processImage(file);
-  
         } else if (file.type.startsWith('video/')) {
           // Process Video
           processedBlob = await processVideo(file);
-  
         } else {
           throw new Error('Unsupported file type');
         }
