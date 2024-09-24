@@ -58,7 +58,7 @@
       padding: 30px;
       width: 100%;
       max-width: 800px;
-      box-sizing: border-box; /* Added to fix the right side overflow */
+      box-sizing: border-box; /* Ensure padding is included in width */
       box-shadow: 0 0 20px rgba(100, 100, 255, 0.3),
                   0 0 60px rgba(100, 100, 255, 0.1);
       backdrop-filter: blur(5px);
@@ -487,26 +487,25 @@
               cv.split(hsv, channels);
               let h = channels.get(0); // Hue channel
 
+              // Normalize H channel to 0-255 range for displaying
+              let h_norm = new cv.Mat();
+              cv.normalize(h, h_norm, 0, 255, cv.NORM_MINMAX);
+
+              // Apply histogram equalization to h_norm
               let hEqualized = new cv.Mat();
-              cv.equalizeHist(h, hEqualized);
+              cv.equalizeHist(h_norm, hEqualized);
 
-              // Merge channels back
-              channels.set(0, hEqualized);
-              let result = new cv.Mat();
-              cv.merge(channels, result);
-
-              // Convert back to RGB
-              cv.cvtColor(result, result, cv.COLOR_HSV2RGB);
-              cv.imshow(canvas, result);
+              // Display hEqualized as a grayscale image
+              cv.imshow(canvas, hEqualized);
 
               canvas.toBlob((finalBlob) => {
                 // Clean up
                 h.delete();
+                h_norm.delete();
                 hEqualized.delete();
                 channels.delete();
                 hsv.delete();
                 src.delete();
-                result.delete();
 
                 resolve(finalBlob);
               }, 'image/png');
