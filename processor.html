@@ -5,31 +5,28 @@
   <title>CLEARUFO.SPACE IMAGE PROCESSOR - Full Page Layout</title>
   <style>
     /* Global Styles */
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
-      overflow-x: hidden; /* Prevent horizontal scrolling */
-      overflow-y: auto;   /* Allow vertical scrolling */
+      overflow-x: hidden;
+      overflow-y: auto;
       background-color: #000;
       color: #fff;
       font-family: 'Arial', sans-serif;
     }
-    
+
     /* Background Stars */
     .stars {
-      position: fixed;
+      position: fixed; /* Keep it fixed to cover the viewport */
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100%; /* Ensure it covers the viewport height */
       z-index: -1;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      pointer-events: none; /* Allow interactions with content */
     }
-    
+
     /* Content Wrapper */
     .content {
       display: flex;
@@ -40,14 +37,20 @@
       z-index: 1;
       padding: 20px;
       box-sizing: border-box;
+      align-items: center;       /* Center items horizontally */
+      justify-content: center;   /* Center items vertically when possible */
     }
-    
+
     /* Main Content Area */
     .main-content {
-      flex: 1; /* Allows the main content to grow and push the footer down */
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;       /* Center the glowing window horizontally */
+      justify-content: center;   /* Center the glowing window vertically */
       width: 100%;
     }
-    
+
     /* Glowing Window */
     .glowing-window {
       background-color: rgba(25, 25, 35, 0.6);
@@ -61,7 +64,7 @@
       animation: glow 4s infinite alternate;
       margin: 0 auto;
     }
-    
+
     @keyframes glow {
       0% {
         box-shadow: 0 0 20px rgba(100, 100, 255, 0.3),
@@ -72,20 +75,20 @@
                     0 0 70px rgba(100, 100, 255, 0.2);
       }
     }
-    
+
     /* Headings and Text */
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
-    
+
     p {
       font-size: 1.2rem;
       max-width: 600px;
       margin: 0 auto 2rem;
     }
-    
+
     /* Button Styles */
     .button-container {
       display: flex;
@@ -93,7 +96,7 @@
       margin-bottom: 20px;
       justify-content: center;
     }
-    
+
     .cosmic-button {
       padding: 12px 24px;
       font-size: 1rem;
@@ -105,18 +108,18 @@
       text-decoration: none;
       border-radius: 30px;
     }
-    
+
     .cosmic-button:hover {
       background-color: rgba(255, 255, 255, 0.2);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
-    
+
     /* File Info */
     #fileInfo {
       margin-top: 20px;
       font-style: italic;
     }
-    
+
     /* Notification and Download Button Styles */
     #notification {
       display: none;
@@ -130,7 +133,7 @@
       text-align: center;
       margin: 20px auto 0;
     }
-    
+
     #downloadButton {
       display: none;
       padding: 10px 20px;
@@ -145,12 +148,12 @@
       margin-top: 10px;
       display: inline-block;
     }
-    
+
     #downloadButton:hover {
       background-color: rgba(255, 255, 255, 0.2);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
-    
+
     /* Loader Styles */
     .loader {
       border: 8px solid #f3f3f3;
@@ -162,18 +165,18 @@
       margin: 20px auto;
       display: none;
     }
-    
+
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
+
     #processButton:disabled {
       background-color: rgba(255, 255, 255, 0.2);
       cursor: not-allowed;
       box-shadow: none;
     }
-    
+
     /* Star Animations */
     @keyframes twinkle-float {
       0% {
@@ -189,12 +192,12 @@
         transform: translateY(0px) scale(0.5);
       }
     }
-    
+
     @keyframes shoot {
       0% { transform: rotate(var(--shoot-rotate, 0rad)) translate(0, 0); opacity: 1; }
       100% { transform: rotate(var(--shoot-rotate, 0rad)) translate(300px, 300px); opacity: 0; }
     }
-    
+
     .star {
       position: absolute;
       background-color: #fff;
@@ -205,7 +208,7 @@
       animation-iteration-count: infinite;
       animation-direction: alternate;
     }
-    
+
     .shooting-star {
       position: absolute;
       width: 2px;
@@ -213,7 +216,7 @@
       background-color: #fff;
       pointer-events: none;
     }
-    
+
     /* Logo Styles */
     .logo {
       position: fixed;
@@ -221,18 +224,18 @@
       left: 20px;
       z-index: 10;
     }
-    
+
     .logo img {
       width: 120px;
       height: auto;
       filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
       transition: transform 0.3s ease;
     }
-    
+
     .logo img:hover {
       transform: scale(1.1);
     }
-    
+
     /* Footer Styles */
     footer {
       width: 100%;
@@ -242,16 +245,16 @@
       padding: 10px 0;
       font-size: 0.8rem;
     }
-    
+
     footer a {
       color: #fff;
       text-decoration: none;
     }
-    
+
     footer a:hover {
       text-decoration: underline;
     }
-    
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -264,7 +267,7 @@
       overflow: auto;
       background-color: rgba(0,0,0,0.8);
     }
-    
+
     .modal-content {
       background-color: rgba(25, 25, 35, 0.9);
       margin: 15% auto;
@@ -275,7 +278,7 @@
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(100, 100, 255, 0.3);
     }
-    
+
     .close {
       color: #aaa;
       float: right;
@@ -283,7 +286,7 @@
       font-weight: bold;
       cursor: pointer;
     }
-    
+
     .close:hover,
     .close:focus {
       color: #fff;
@@ -383,7 +386,7 @@
         this.element.style.top = `${Math.random() * 100}%`;
         
         const duration = Math.random() * 1.5 + 1.5;
-        this.element.style.setProperty('--shoot-rotate', angle);
+        this.element.style.setProperty('--shoot-rotate', angle + 'rad');
         this.element.style.animation = `shoot ${duration}s linear forwards`;
         
         this.element.removeEventListener('animationend', this.resetBound);
@@ -394,12 +397,15 @@
 
     function createStarfield() {
       const container = document.getElementById('stars');
-      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 1000);
-      
+      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 8000); // Adjusted density
+
+      // Clear existing stars
+      container.innerHTML = '';
+
       for (let i = 0; i < starCount; i++) {
         new Star(container);
       }
-      
+
       for (let i = 0; i < 5; i++) {
         new ShootingStar(container);
       }
@@ -408,8 +414,6 @@
     createStarfield();
 
     window.addEventListener('resize', () => {
-      const container = document.getElementById('stars');
-      container.innerHTML = '';
       createStarfield();
     });
 
