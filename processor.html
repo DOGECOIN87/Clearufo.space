@@ -4,18 +4,20 @@
   <base href="https://websim.ai/cosmic-enigma/">
   <title>CLEARUFO.SPACE IMAGE PROCESSOR - Full Page Layout</title>
   <style>
-    /* Your existing styles remain unchanged */
+    /* Global Styles */
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
-      overflow: hidden;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      overflow-y: auto;   /* Allow vertical scrolling */
       background-color: #000;
       color: #fff;
       font-family: 'Arial', sans-serif;
     }
     
+    /* Background Stars */
     .stars {
       position: fixed;
       top: 0;
@@ -23,13 +25,15 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
     
+    /* Content Wrapper */
     .content {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
       min-height: 100vh;
       text-align: center;
       position: relative;
@@ -38,6 +42,13 @@
       box-sizing: border-box;
     }
     
+    /* Main Content Area */
+    .main-content {
+      flex: 1; /* Allows the main content to grow and push the footer down */
+      width: 100%;
+    }
+    
+    /* Glowing Window */
     .glowing-window {
       background-color: rgba(25, 25, 35, 0.6);
       border-radius: 15px;
@@ -48,7 +59,7 @@
                   0 0 60px rgba(100, 100, 255, 0.1);
       backdrop-filter: blur(5px);
       animation: glow 4s infinite alternate;
-      margin: auto 0;
+      margin: 0 auto;
     }
     
     @keyframes glow {
@@ -62,6 +73,7 @@
       }
     }
     
+    /* Headings and Text */
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
@@ -74,6 +86,7 @@
       margin: 0 auto 2rem;
     }
     
+    /* Button Styles */
     .button-container {
       display: flex;
       gap: 20px;
@@ -98,6 +111,7 @@
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
     
+    /* File Info */
     #fileInfo {
       margin-top: 20px;
       font-style: italic;
@@ -114,8 +128,9 @@
       width: 100%;
       max-width: 600px;
       text-align: center;
+      margin: 20px auto 0;
     }
-
+    
     #downloadButton {
       display: none;
       padding: 10px 20px;
@@ -130,12 +145,12 @@
       margin-top: 10px;
       display: inline-block;
     }
-
+    
     #downloadButton:hover {
       background-color: rgba(255, 255, 255, 0.2);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
-
+    
     /* Loader Styles */
     .loader {
       border: 8px solid #f3f3f3;
@@ -147,19 +162,19 @@
       margin: 20px auto;
       display: none;
     }
-
+    
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
+    
     #processButton:disabled {
       background-color: rgba(255, 255, 255, 0.2);
       cursor: not-allowed;
       box-shadow: none;
     }
-
-    /* Combined Twinkle and Float Animation */
+    
+    /* Star Animations */
     @keyframes twinkle-float {
       0% {
         opacity: 0;
@@ -185,12 +200,10 @@
       background-color: #fff;
       border-radius: 50%;
       pointer-events: none;
-      /* Apply the combined animation */
       animation-name: twinkle-float;
       animation-timing-function: ease-in-out;
       animation-iteration-count: infinite;
       animation-direction: alternate;
-      /* The duration and delay will be set via inline styles in JS */
     }
     
     .shooting-star {
@@ -199,9 +212,9 @@
       height: 2px;
       background-color: #fff;
       pointer-events: none;
-      /* The animation will be set via inline styles in JS */
     }
     
+    /* Logo Styles */
     .logo {
       position: fixed;
       top: 20px;
@@ -220,6 +233,7 @@
       transform: scale(1.1);
     }
     
+    /* Footer Styles */
     footer {
       width: 100%;
       background-color: rgba(0, 0, 0, 0.5);
@@ -238,7 +252,7 @@
       text-decoration: underline;
     }
     
-    /* Modal styles */
+    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -286,28 +300,26 @@
       <img src="https://clearufo.space/logo.png" alt="Cosmic Enigma Logo" width="120" height="120" id="logoImage">
     </div>
 
-    <div class="glowing-window">
-      <h1>Cosmic Enigma</h1>
-      <p>Upload your cosmic images for analysis and processing</p>
-      
-      <div class="button-container">
-        <label for="fileInput" class="cosmic-button">Upload Image</label>
-        <!-- Updated accept attribute to only images -->
-        <input type="file" id="fileInput" style="display: none;" accept="image/*">
-        <button id="processButton" class="cosmic-button" style="display: none;">Process Image</button>
+    <div class="main-content">
+      <div class="glowing-window">
+        <h1>Cosmic Enigma</h1>
+        <p>Upload your cosmic images for analysis and processing</p>
+        
+        <div class="button-container">
+          <label for="fileInput" class="cosmic-button">Upload Image</label>
+          <input type="file" id="fileInput" style="display: none;" accept="image/*">
+          <button id="processButton" class="cosmic-button" style="display: none;">Process Image</button>
+        </div>
+        
+        <div id="fileInfo"></div>
+        
+        <div class="loader" id="loader" style="display: none;"></div>
+        
+        <div id="notification">
+          <p id="notificationText"></p>
+          <a href="#" id="downloadButton" download>Download Processed Image</a>
+        </div>
       </div>
-      
-      <div id="fileInfo"></div>
-      
-      <!-- Loader -->
-      <div class="loader" id="loader" style="display: none;"></div>
-      
-      <!-- Notification -->
-      <div id="notification">
-        <p id="notificationText"></p>
-        <a href="#" id="downloadButton" download>Download Processed Image</a>
-      </div>
-      
     </div>
 
     <footer>
@@ -330,18 +342,99 @@
   <script async src="https://docs.opencv.org/4.x/opencv.js" type="text/javascript"></script>
 
   <script>
-    // Star animation code
-    // Your existing star animation code remains unchanged
+    // Star Animation Code
+    class Star {
+      constructor(container) {
+        this.element = document.createElement('div');
+        this.element.className = 'star';
+        this.reset();
+        container.appendChild(this.element);
+      }
 
-    // ... (Star animation code here) ...
+      reset() {
+        const size = Math.random() * 3 + 1;
+        this.element.style.width = `${size}px`;
+        this.element.style.height = `${size}px`;
+        this.element.style.left = `${Math.random() * 100}%`;
+        this.element.style.top = `${Math.random() * 100}%`;
+        
+        const duration = Math.random() * 2 + 2;
+        const delay = Math.random() * 4;
+        this.element.style.animationDuration = `${duration}s`;
+        this.element.style.animationDelay = `${delay}s`;
+      }
+    }
 
-    // Modal functionality
-    // Your existing modal functionality code remains unchanged
+    class ShootingStar {
+      constructor(container) {
+        this.element = document.createElement('div');
+        this.element.className = 'shooting-star';
+        this.reset();
+        container.appendChild(this.element);
+      }
 
-    // ... (Modal functionality code here) ...
+      reset() {
+        const angle = Math.random() * Math.PI / 4 - Math.PI / 8;
+        const size = Math.random() * 2 + 1;
+        
+        this.element.style.width = `${size}px`;
+        this.element.style.height = `${size}px`;
+        this.element.style.left = `${Math.random() * 100}%`;
+        this.element.style.top = `${Math.random() * 100}%`;
+        
+        const duration = Math.random() * 1.5 + 1.5;
+        this.element.style.setProperty('--shoot-rotate', angle);
+        this.element.style.animation = `shoot ${duration}s linear forwards`;
+        
+        this.element.removeEventListener('animationend', this.resetBound);
+        this.resetBound = this.reset.bind(this);
+        this.element.addEventListener('animationend', this.resetBound);
+      }
+    }
+
+    function createStarfield() {
+      const container = document.getElementById('stars');
+      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 1000);
+      
+      for (let i = 0; i < starCount; i++) {
+        new Star(container);
+      }
+      
+      for (let i = 0; i < 5; i++) {
+        new ShootingStar(container);
+      }
+    }
+
+    createStarfield();
+
+    window.addEventListener('resize', () => {
+      const container = document.getElementById('stars');
+      container.innerHTML = '';
+      createStarfield();
+    });
+
+    // Modal Functionality
+    const modal = document.getElementById('logoModal');
+    const logoImage = document.getElementById('logoImage');
+    const closeButton = document.getElementsByClassName('close')[0];
+
+    logoImage.onclick = function() {
+      modal.style.display = 'block';
+    }
+
+    closeButton.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
 
     // Processing Logic
     let processedBlob = null;
+    let cvReady = false;
 
     const fileInput = document.getElementById('fileInput');
     const processButton = document.getElementById('processButton');
@@ -351,11 +444,20 @@
     const notificationText = document.getElementById('notificationText');
     const downloadButton = document.getElementById('downloadButton');
 
+    // Wait for OpenCV.js to be ready
+    cv['onRuntimeInitialized'] = () => {
+      cvReady = true;
+      console.log('OpenCV.js is ready');
+      if (fileInput.files[0]) {
+        processButton.disabled = false;
+      }
+    };
+
     // Function to Process Images Using OpenCV.js
     async function processImage(file) {
       return new Promise((resolve, reject) => {
-        if (typeof cv === 'undefined') {
-          reject(new Error('OpenCV.js is not loaded. Image processing is unavailable.'));
+        if (!cvReady) {
+          reject(new Error('OpenCV.js is not fully loaded yet. Please wait a moment and try again.'));
           return;
         }
 
@@ -427,6 +529,7 @@
         processButton.style.display = 'inline-block';
         notification.style.display = 'none';
         downloadButton.style.display = 'none';
+        processButton.disabled = !cvReady;
       } else {
         fileInfo.textContent = '';
         processButton.style.display = 'none';
