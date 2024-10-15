@@ -7,6 +7,46 @@
     <title>Home - ClearUFO.Space</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inline CSS for the glowing button -->
+    <style>
+        /* Glowing button animation */
+        .glowing-button {
+            padding: 12px 24px;
+            background-color: #ff00ff; /* Primary color for the button */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+            animation: glowing 2s infinite ease-in-out;
+        }
+
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6), 0 0 80px rgba(255, 0, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+            }
+        }
+
+        .glowing-button:hover {
+            background-color: #ffffff;
+            color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Links -->
@@ -24,13 +64,13 @@
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
-            <!-- Adjusted text positions -->
             <h1 style="margin-top: -20px;">Uncovering what most people miss.</h1>
             <p style="margin-top: -10px;">Experimental Paranormal Video Forensics Services for anyone.</p>
-            <!-- Lowered the button using margin-top -->
             <a href="services.html" class="cta-button" style="margin-top: 30px; display: inline-block;">Explore Services</a>
 
-            <!-- Removed the YouTube Video -->
+            <!-- New glowing button -->
+            <a href="las-vegas-incident.html" class="glowing-button">The Las Vegas Incident</a>
+
         </section>
 
         <!-- Why Choose Us Section -->
