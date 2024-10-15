@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Las Vegas Incident - ClearUFO.space</title>
     
-    <!-- Inline CSS for the glowing button -->
+    <!-- Inline CSS for the glowing button, stars, and adjustments -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
 
@@ -20,11 +20,11 @@
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            height: 100%;
+            overflow: hidden;
         }
 
         .container {
@@ -50,35 +50,16 @@
             animation: fadeIn 2s ease-out 1s forwards;
         }
 
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+        .inspirational-text {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #ffffff;
+            max-width: 600px;
+            line-height: 1.6;
+            text-align: center;
         }
 
-        .cta-button {
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeIn 2s ease-out 3s forwards;
-        }
-
-        .cta-button:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px var(--primary-color);
-        }
-
-        /* Glowing button animation */
+        /* Adjust button to sit lower */
         .glowing-button {
             padding: 12px 24px;
             background-color: #ff00ff;
@@ -89,7 +70,7 @@
             text-transform: uppercase;
             text-decoration: none;
             font-size: 1.2rem;
-            margin-top: 20px;
+            margin-top: 40px; /* Increased margin to lower button */
             display: inline-block;
             position: relative;
             transition: all 0.3s ease;
@@ -115,16 +96,7 @@
             box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
+        /* Stars and background animation */
         .stars {
             position: absolute;
             width: 200%;
@@ -134,33 +106,22 @@
             animation: rotateStars 120s linear infinite;
         }
 
-        @media (max-width: 768px) {
-            .cta-button {
-                font-size: 1rem;
-                padding: 0.8rem 1.5rem;
-            }
-            .video-placeholder {
-                max-width: 90%;
-                height: auto;
-                aspect-ratio: 16 / 9;
-            }
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        @media (max-width: 500px) {
-            .cta-button {
-                font-size: 0.9rem;
-                padding: 0.7rem 1.2rem;
-            }
-            .video-placeholder {
-                width: 90%;
-                height: auto;
-                aspect-ratio: 16 / 9;
-            }
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: var(--secondary-color);
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Animated Stars -->
         <svg class="stars" xmlns="http://www.w3.org/2000/svg">
             <script>
                 const starsSvg = document.querySelector('.stars');
@@ -181,17 +142,17 @@
             YouTube Video Placeholder
         </div>
 
+        <!-- Inspirational Text Section -->
+        <div class="inspirational-text">
+            This video represents the culmination of 17 months of relentless experimental work using extremely complex workflows with forensic software. My methods have uncovered what was previously invisible, shedding light on the mysteries hidden in plain sight. Your support will greatly help me be able to continue pushing the boundaries of what is possible.
+        </div>
+
         <!-- Glowing button for donation -->
         <a href="donation.html" class="glowing-button">Leave a Donation</a>
     </div>
 
-    <script>
-        // Add subtle parallax effect
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            document.querySelector('.stars').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
-        });
-    </script>
+    <footer>
+        <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
+    </footer>
 </body>
 </html>
