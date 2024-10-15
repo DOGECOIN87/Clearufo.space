@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Las Vegas Incident - ClearUFO.space</title>
     
-    <!-- Inline CSS for the glowing button, stars, and adjustments -->
+    <!-- Inline CSS for layout adjustments -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
 
@@ -28,6 +28,23 @@
             flex-direction: column;
         }
 
+        nav {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 3;
+        }
+
+        nav .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
@@ -37,6 +54,7 @@
             position: relative;
             text-align: center;
             z-index: 1;
+            margin-top: 100px; /* Added to account for the logo */
         }
 
         .video-placeholder {
@@ -122,10 +140,20 @@
             padding: 20px 40px;
             background-color: var(--secondary-color);
             z-index: 2;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
+    <!-- Navigation with logo -->
+    <nav>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a>
+        </div>
+    </nav>
+
     <div class="container">
         <!-- Animated Stars -->
         <svg class="stars" xmlns="http://www.w3.org/2000/svg">
