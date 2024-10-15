@@ -26,6 +26,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         nav {
@@ -50,11 +51,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-grow: 1; /* This makes sure the container grows and the footer stays at the bottom */
+            flex-grow: 1;
             position: relative;
             text-align: center;
             z-index: 1;
-            margin-top: 100px; /* Added to account for the logo */
+            padding-top: 160px; /* Increased padding to account for the logo space */
         }
 
         .video-placeholder {
@@ -68,7 +69,7 @@
             color: white;
             font-size: 1.5rem;
             animation: fadeIn 2s ease-out 1s forwards;
-            z-index: 2; /* Ensures video is above the stars */
+            z-index: 2;
             position: relative;
         }
 
@@ -126,7 +127,7 @@
             height: 200%;
             top: -50%;
             left: -50%;
-            z-index: 0; /* Ensure stars are in the background */
+            z-index: 0;
             animation: rotateStars 120s linear infinite;
         }
 
@@ -140,8 +141,9 @@
             padding: 20px 40px;
             background-color: var(--secondary-color);
             z-index: 2;
-            position: relative;
+            position: absolute;
             bottom: 0;
+            left: 0;
             width: 100%;
         }
     </style>
