@@ -26,10 +26,12 @@
         <section class="contact-section">
             <h1>Contact Us</h1>
             <p>If you have any questions, feel free to reach out to us by filling out the form below.</p>
-            <form action="contact.php" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+
+            <!-- The updated form that uses mailto: -->
+            <form id="contactForm">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </section>
@@ -39,5 +41,26 @@
     <footer>
         <p>&copy; 2024 ClearUFO.space. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the form from submitting
+
+            // Get the values entered by the user
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            // Construct the mailto URL with the filled-in information
+            var mailtoLink = 'mailto:mattrickbeats@gmail.com' +
+                             '?subject=Contact from ' + encodeURIComponent(name) +
+                             '&body=Name: ' + encodeURIComponent(name) + '%0D%0A' +
+                             'Email: ' + encodeURIComponent(email) + '%0D%0A' +
+                             'Message: ' + encodeURIComponent(message);
+
+            // Open the user's default email client with the filled-in details
+            window.location.href = mailtoLink;
+        });
+    </script>
 </body>
 </html>
