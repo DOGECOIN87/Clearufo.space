@@ -4,7 +4,7 @@
     <base href="https://clearufo.space/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Option - $19.00 USD</title>
+    <title>Payment Option</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
 
@@ -97,50 +97,6 @@
         .payment-option p {
             margin-top: 10px;
             font-weight: bold;
-        }
-
-        form {
-            background-color: rgba(17, 17, 68, 0.7);
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-            margin-bottom: 40px;
-        }
-
-        form input[type="file"],
-        form input[type="text"],
-        form input[type="email"],
-        form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid var(--primary-color);
-            border-radius: 5px;
-            background-color: #000022;
-            color: var(--text-color);
-        }
-
-        form label {
-            text-align: left;
-            display: block;
-            margin-top: 15px;
-        }
-
-        form button {
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        form button:hover {
-            background-color: var(--secondary-color);
         }
 
         .back-link {
@@ -247,7 +203,7 @@
     </nav>
 
     <div class="container">
-        <h1>Payment Option - $19.00 USD</h1>
+        <h1>Payment Options</h1>
 
         <h2>Select a Payment Method</h2>
         <div class="payment-options">
@@ -272,24 +228,6 @@
                 <p>Cash App</p>
             </div>
         </div>
-
-        <h2>Upload Your Media</h2>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            <label for="media">Select Image to Upload:</label>
-            <input type="file" name="media" id="media" accept="image/*" required>
-
-            <label for="name">Your Name:</label>
-            <input type="text" name="name" id="name" required>
-
-            <label for="email">Your Email:</label>
-            <input type="email" name="email" id="email" required>
-
-            <label for
-            <label for="payment-details">Payment Transaction ID or Details:</label>
-            <textarea name="payment-details" id="payment-details" rows="4" required></textarea>
-
-            <button type="submit">Submit</button>
-        </form>
 
         <div class="back-link">
             <a href="pricing.html">&larr; Back to Pricing</a>
@@ -346,9 +284,7 @@
             window.addEventListener('click', function(event) {
                 if (event.target == modal) {
                     modal.style.display = 'none';
-                }
-            });
-
+                
             // Copy to clipboard functionality
             copyButton.addEventListener('click', function() {
                 var addressText = modalAddress.innerText;
