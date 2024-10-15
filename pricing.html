@@ -74,6 +74,38 @@
             margin-bottom: 1rem;
         }
 
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
         /* Button styles */
         .plan a.button {
             display: inline-block;
@@ -90,9 +122,29 @@
         .plan a.button:hover {
             background-color: var(--secondary-color);
         }
+
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: var(--secondary-color);
+            margin-top: 50px;
+            color: var(--bg-color);
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation Links -->
+    <nav>
+        <ul>
+            <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <h1>Pricing</h1>
         <p class="pricing-subtitle">Choose an option that best suits your needs.</p>
@@ -107,9 +159,7 @@
                     • Advanced Processing<br>
                     • Multiple Variations Rendered
                 </p>
-                <a href="https://commerce.coinbase.com/checkout/73394508-c939-4f2f-88a6-e6a98aa54c2d" class="button" target="_blank">
-                    Pay with Crypto
-                </a>
+                <a href="https://commerce.coinbase.com/checkout/73394508-c939-4f2f-88a6-e6a98aa54c2d" class="button" target="_blank">Pay with Crypto</a>
             </div>
 
             <!-- Short Video Enhancement - $99 -->
@@ -120,9 +170,7 @@
                     • Processed Same Day<br>
                     • Under 1 Minute in Length
                 </p>
-                <a href="https://commerce.coinbase.com/checkout/628e2274-1d74-4a11-b70e-2ff8980e04ff" class="button" target="_blank">
-                    Pay with Crypto
-                </a>
+                <a href="https://commerce.coinbase.com/checkout/628e2274-1d74-4a11-b70e-2ff8980e04ff" class="button" target="_blank">Pay with Crypto</a>
             </div>
 
             <!-- Long Video Enhancement - $249.99 -->
@@ -134,9 +182,7 @@
                     • Advanced Processing<br>
                     • 1-3 Minutes in Length
                 </p>
-                <a href="https://commerce.coinbase.com/checkout/d2ddd5fe-a00e-4f1a-b0d8-4d87d291851a" class="button" target="_blank">
-                    Pay with Crypto
-                </a>
+                <a href="https://commerce.coinbase.com/checkout/d2ddd5fe-a00e-4f1a-b0d8-4d87d291851a" class="button" target="_blank">Pay with Crypto</a>
             </div>
         </div>
     </div>
