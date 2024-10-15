@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Las Vegas Incident - ClearUFO.space</title>
+    
+    <!-- Inline CSS for the glowing button -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
 
@@ -33,20 +35,6 @@
             height: 100vh;
             position: relative;
             text-align: center;
-        }
-
-        .ufo-container {
-            position: relative;
-            width: 300px;
-            height: 150px;
-            margin-bottom: 2rem;
-        }
-
-        .ufo {
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            animation: fadeIn 2s ease-out, hover 4s ease-in-out infinite;
         }
 
         .video-placeholder {
@@ -90,24 +78,51 @@
             box-shadow: 0 0 20px var(--primary-color);
         }
 
+        /* Glowing button animation */
+        .glowing-button {
+            padding: 12px 24px;
+            background-color: #ff00ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+            animation: glowing 2s infinite ease-in-out;
+        }
+
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6), 0 0 80px rgba(255, 0, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+            }
+        }
+
+        .glowing-button:hover {
+            background-color: #ffffff;
+            color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        @keyframes hover {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
-        }
-
-        @keyframes moveStars {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(100%); }
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .stars {
@@ -119,19 +134,10 @@
             animation: rotateStars 120s linear infinite;
         }
 
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         @media (max-width: 768px) {
             .cta-button {
                 font-size: 1rem;
                 padding: 0.8rem 1.5rem;
-            }
-            .ufo-container {
-                width: 200px;
-                height: 100px;
             }
             .video-placeholder {
                 max-width: 90%;
@@ -145,9 +151,10 @@
                 font-size: 0.9rem;
                 padding: 0.7rem 1.2rem;
             }
-            .ufo-container {
-                width: 150px;
-                height: 75px;
+            .video-placeholder {
+                width: 90%;
+                height: auto;
+                aspect-ratio: 16 / 9;
             }
         }
     </style>
@@ -174,7 +181,8 @@
             YouTube Video Placeholder
         </div>
 
-        <button class="cta-button" onclick="window.location.href='home.html'">Start Exploring</button>
+        <!-- Glowing button for donation -->
+        <a href="donation.html" class="glowing-button">Leave a Donation</a>
     </div>
 
     <script>
@@ -183,7 +191,6 @@
             const mouseX = e.clientX / window.innerWidth;
             const mouseY = e.clientY / window.innerHeight;
             document.querySelector('.stars').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
-            document.querySelector('.ufo-container').style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
         });
     </script>
 </body>
