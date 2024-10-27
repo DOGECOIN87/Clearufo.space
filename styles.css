@@ -1,19 +1,19 @@
+/* styles.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
 
-/* Root Variables */
 :root {
     --primary-color: #00ffff;
     --secondary-color: #ff00ff;
     --bg-color: #000033;
     --text-color: #ffffff;
-    --card-bg-color: rgba(17, 17, 68, 0.7);
+    --card-bg-color: rgba(17, 17, 68, 0.7); /* Semi-opaque background for cards */
 }
 
 /* Global Styles */
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
     font-family: 'Rajdhani', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -55,115 +55,72 @@ nav ul li a:hover {
     color: var(--secondary-color);
 }
 
-/* Header Styles */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-header p {
-    font-size: 1.2rem;
-}
-
-/* Image Styles */
-img {
-    max-width: 100%;
+.logo img {
+    max-width: 200px;
     height: auto;
+    padding: 0;
+    margin: 0;
 }
 
-/* Extracted Inline Styles */
-.mt-neg-20 {
-    margin-top: -20px;
-}
-
-.mt-neg-10 {
-    margin-top: -10px;
-}
-
-.mt-30-inline {
-    margin-top: 30px;
-    display: inline-block;
-}
-
-/* Glowing Button Styles */
-.glowing-button {
-    padding: 12px 24px;
-    background-color: #ff00ff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-top: 20px;
-    display: inline-block;
-    position: relative;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-    animation: glowing 2s infinite ease-in-out;
-}
-
-@keyframes glowing {
-    0% {
-        box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-    }
-    50% {
-        box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6), 0 0 80px rgba(255, 0, 255, 0.4);
-    }
-    100% {
-        box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-    }
-}
-
-.glowing-button:hover {
-    background-color: #ffffff;
-    color: #ff00ff;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
-}
-
-/* Index-Specific Styles */
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
+/* Footer Styles */
+footer {
     text-align: center;
-}
-
-.logo {
+    padding: 20px 40px;
+    background-color: var(--secondary-color);
+    margin-top: 50px;
     width: 100%;
-    max-width: 400px;
-    height: auto;
-    animation: fadeIn 2s ease-out 1s forwards;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.logo:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+/* Header Styles */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Section and Heading Styles */
+.section {
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 40px;
+    background-color: var(--bg-color);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin: 0 auto 20px auto;
+    line-height: 1.6;
+    max-width: 600px;
 }
 
 .cta-button {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
+    padding: 12px 24px;
     background-color: transparent;
-    border: 2px solid var(--primary-color);
     color: var(--text-color);
-    cursor: pointer;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
     transition: all 0.3s ease;
-    opacity: 0;
-    animation: fadeIn 2s ease-out 3s forwards;
 }
 
 .cta-button:hover {
@@ -172,60 +129,177 @@ img {
     box-shadow: 0 0 20px var(--primary-color);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Pricing Grid Styles */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-@keyframes hover {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+.plan {
+    background-color: var(--card-bg-color);
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
+.plan:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
 }
 
-@keyframes moveStars {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(100%); }
+.plan h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
-.stars {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    animation: rotateStars 120s linear infinite;
+.plan .price {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
-@keyframes rotateStars {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+/* Services Grid Styles */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-/* Responsive Styles */
+.service-card {
+    background-color: var(--card-bg-color);
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.service-card h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.service-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Contact Form Styles */
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-section form input,
+.contact-section form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.contact-section form button {
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-section form button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* About Page Styles */
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+.about-video {
+    flex: 1;
+    text-align: center;
+}
+
+.about-video video {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Video Styles */
+.video-container iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .cta-button {
-        font-size: 1rem;
-        padding: 0.8rem 1.5rem;
+    .hero {
+        padding: 60px 20px;
     }
-    .ufo-container {
-        width: 200px;
-        height: 100px;
-    }
-}
 
-@media (max-width: 500px) {
-    .cta-button {
-        font-size: 0.9rem;
-        padding: 0.7rem 1.2rem;
+    .hero h1 {
+        font-size: 2.5rem;
     }
-    .ufo-container {
-        width: 150px;
-        height: 75px;
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 100%;
+    }
+
+    .section h2 {
+        font-size: 2.5rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text, .about-video {
+        flex: none;
+        width: 100%;
+    }
+
+    .service-card h3 {
+        font-size: 1.8rem;
+    }
+
+    .service-card p {
+        font-size: 1rem;
     }
 }
