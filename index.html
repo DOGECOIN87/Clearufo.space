@@ -5,7 +5,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClearUFO.space - Unveiling Cosmic Mysteries</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --bg-color: #000033;
+            --text-color: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            display: none;
+        }
+
+        .subtitle {
+            display: none;
+        }
+
+        .ufo-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            margin-bottom: 2rem;
+        }
+
+        .ufo {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeIn 2s ease-out, hover 4s ease-in-out infinite;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            animation: fadeIn 2s ease-out 1s forwards;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-10px); /* Raise the logo slightly */
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3); /* Increase shadow size */
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .cta-button {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 3s forwards;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes hover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        @keyframes moveStars {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
+        .stars {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: rotateStars 120s linear infinite;
+        }
+
+        @keyframes rotateStars {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .cta-button {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+            .ufo-container {
+                width: 200px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cta-button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
+            }
+            .ufo-container {
+                width: 150px;
+                height: 75px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
