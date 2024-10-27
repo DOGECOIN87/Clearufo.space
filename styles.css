@@ -1,80 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
-
-:root {
-    --primary-color: #00ffff;
-    --secondary-color: #ff00ff;
-    --bg-color: #000033;
-    --text-color: #ffffff;
-    --card-bg-color: rgba(17, 17, 68, 0.7); /* Semi-opaque background for cards */
-}
-
-/* Global Styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Rajdhani', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-}
-
-/* Navigation Styles */
-nav {
-    margin-bottom: 20px;
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: var(--secondary-color);
-}
-
-/* Header Styles */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-header p {
-    font-size: 1.2rem;
-}
-
-/* Image Styles */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Extracted Inline Styles */
 .mt-neg-20 {
     margin-top: -20px;
 }
@@ -88,42 +11,39 @@ img {
     display: inline-block;
 }
 
-.hidden {
-    display: none;
+/* Glowing Button Styles */
+.glowing-button {
+    padding: 12px 24px;
+    background-color: #ff00ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+    animation: glowing 2s infinite ease-in-out;
 }
 
-/* Responsive Layout Adjustments */
-@media (max-width: 768px) {
-    /* Container Padding Adjustment for Mobile */
-    .container {
-        padding: 20px 10px;
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
     }
-    
-    /* Navigation Bar Adjustment */
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
+    50% {
+        box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6), 0 0 80px rgba(255, 0, 255, 0.4);
     }
-    
-    nav ul li {
-        margin: 10px 0;
-    }
-    
-    /* Logo and Images Scaling */
-    img {
-        max-width: 100%;
-        height: auto;
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
     }
 }
 
-@media (max-width: 480px) {
-    /* Further Scaling for Small Screens */
-    nav ul li a {
-        font-size: 1rem;
-    }
-
-    /* Reduce Padding and Margin */
-    .container {
-        padding: 10px 5px;
-    }
+.glowing-button:hover {
+    background-color: #ffffff;
+    color: #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
 }
