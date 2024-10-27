@@ -1,3 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
+
+/* Root Variables */
+:root {
+    --primary-color: #00ffff;
+    --secondary-color: #ff00ff;
+    --bg-color: #000033;
+    --text-color: #ffffff;
+    --card-bg-color: rgba(17, 17, 68, 0.7);
+}
+
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Navigation Styles */
+nav {
+    margin-bottom: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Extracted Inline Styles */
 .mt-neg-20 {
     margin-top: -20px;
 }
@@ -46,4 +125,107 @@
     background-color: #ffffff;
     color: #ff00ff;
     box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
+}
+
+/* Index-Specific Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+}
+
+.logo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    animation: fadeIn 2s ease-out 1s forwards;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.logo:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 2s ease-out 3s forwards;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes hover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+@keyframes moveStars {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+}
+
+.stars {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    animation: rotateStars 120s linear infinite;
+}
+
+@keyframes rotateStars {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .cta-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+    .ufo-container {
+        width: 200px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 500px) {
+    .cta-button {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+    }
+    .ufo-container {
+        width: 150px;
+        height: 75px;
+    }
 }
