@@ -5,155 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Las Vegas Incident - ClearUFO.space</title>
-    
-    <!-- Inline CSS for layout adjustments -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;700&display=swap');
-
-        :root {
-            --primary-color: #00ffff;
-            --secondary-color: #ff00ff;
-            --bg-color: #000033;
-            --text-color: #ffffff;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        nav {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 3;
-        }
-
-        nav .logo img {
-            max-width: 150px;
-            height: auto;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-            text-align: center;
-            z-index: 1;
-            padding-top: 160px; /* Added space for the logo */
-            position: relative;
-        }
-
-        .video-placeholder {
-            width: 100%;
-            max-width: 600px;
-            height: 338px; /* 16:9 aspect ratio */
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.5rem;
-            animation: fadeIn 2s ease-out 1s forwards;
-            z-index: 2;
-        }
-
-        .inspirational-text {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            color: #ffffff;
-            max-width: 600px;
-            line-height: 1.6;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .glowing-button {
-            padding: 12px 24px;
-            background-color: #ff00ff;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-size: 1.2rem;
-            margin-top: 40px;
-            display: inline-block;
-            z-index: 2;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-            animation: glowing 2s infinite ease-in-out;
-        }
-
-        @keyframes glowing {
-            0% {
-                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6), 0 0 80px rgba(255, 0, 255, 0.4);
-            }
-            100% {
-                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-            }
-        }
-
-        .glowing-button:hover {
-            background-color: #ffffff;
-            color: #ff00ff;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
-        }
-
-        /* Stars and background animation */
-        .stars {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            z-index: 0;
-            animation: rotateStars 120s linear infinite;
-        }
-
-        @keyframes rotateStars {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation with logo -->
-    <nav>
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a>
-        </div>
+    <nav class="las-vegas-nav">
+        <ul>
+            <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
+    <div class="container las-vegas-container">
         <!-- Animated Stars -->
-        <svg class="stars" xmlns="http://www.w3.org/2000/svg">
+        <svg class="stars las-vegas-stars" xmlns="http://www.w3.org/2000/svg">
             <script>
                 const starsSvg = document.querySelector('.stars');
-                for (let i = 0; i < 200; i++) {
+                const starCount = 100; // Reduced for performance
+                for (let i = 0; i < starCount; i++) {
                     const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                     star.setAttribute("cx", Math.random() * 100 + "%");
                     star.setAttribute("cy", Math.random() * 100 + "%");
                     star.setAttribute("r", Math.random() * 1.5 + 0.5);
                     star.setAttribute("fill", "white");
-                    star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite, moveStars ${Math.random() * 20 + 10}s linear infinite`;
+                    star.classList.add('star-animation');
                     starsSvg.appendChild(star);
                 }
             </script>
@@ -172,5 +51,10 @@
         <!-- Glowing button for donation -->
         <a href="donation.html" class="glowing-button">Leave a Donation</a>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
+    </footer>
 </body>
 </html>
