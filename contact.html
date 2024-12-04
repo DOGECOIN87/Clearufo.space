@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="https://clearufo.space/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - ClearUFO.space</title>
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <ul>
+            <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        <!-- Navigation -->
-        <nav>
-            <ul>
-                <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-        </nav>
+        <section class="section contact-section">
+            <h2>Contact Us</h2>
+            <p class="contact-subtitle">If you have any questions, feel free to reach out to us by filling out the form below.</p>
 
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <h1>Contact Us</h1>
-            <p>If you have any questions, feel free to reach out to us by filling out the form below.</p>
-
-            <!-- The updated form that uses mailto: -->
-            <form id="contactForm">
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+            <div class="contact-form-container">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 ClearUFO.space. All rights reserved.</p>
+        <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
     </footer>
 
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevents the form from submitting
+            event.preventDefault();
 
-            // Get the values entered by the user
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-            // Construct the mailto URL with the filled-in information
-            var mailtoLink = 'mailto:mattrickbeats@gmail.com' +
-                             '?subject=Contact from ' + encodeURIComponent(name) +
-                             '&body=Name: ' + encodeURIComponent(name) + '%0D%0A' +
-                             'Email: ' + encodeURIComponent(email) + '%0D%0A' +
-                             'Message: ' + encodeURIComponent(message);
+            const mailtoLink = 'mailto:mattrickbeats@gmail.com' +
+                             '?subject=' + encodeURIComponent('Contact from ' + name) +
+                             '&body=' + encodeURIComponent(
+                                 'Name: ' + name + '\n\n' +
+                                 'Email: ' + email + '\n\n' +
+                                 'Message:\n' + message
+                             );
 
-            // Open the user's default email client with the filled-in details
             window.location.href = mailtoLink;
         });
     </script>
