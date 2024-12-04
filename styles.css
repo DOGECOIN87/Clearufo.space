@@ -16,6 +16,70 @@ body {
     flex-direction: column;
 }
 
+/* Visitor Counter */
+.visitor-counter {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.ufo-counter {
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #00ffff;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.ufo-counter::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 40px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #00ffff;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.visitor-count {
+    font-size: 1.8rem;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    font-weight: bold;
+}
+
+.visitor-label {
+    margin-top: 10px;
+    color: #00ffff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 /* Container */
 .container {
     max-width: 1200px;
@@ -670,6 +734,29 @@ footer {
     .cta-button {
         font-size: 1rem;
         padding: 12px 30px;
+    }
+
+    .visitor-counter {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .ufo-counter {
+        width: 100px;
+        height: 100px;
+    }
+
+    .ufo-counter::before {
+        width: 120px;
+        height: 35px;
+    }
+
+    .visitor-count {
+        font-size: 1.5rem;
+    }
+
+    .visitor-label {
+        font-size: 0.8rem;
     }
 }
 

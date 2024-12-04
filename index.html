@@ -28,6 +28,14 @@
         <img src="logo.png" alt="ClearUFO Logo" class="logo index-logo" />
 
         <button class="cta-button index-cta-button" onclick="window.location.href='home.html'">Start Exploring</button>
+
+        <!-- Visitor Counter -->
+        <div class="visitor-counter">
+            <div class="ufo-counter">
+                <div class="visitor-count">0</div>
+            </div>
+            <div class="visitor-label">Cosmic Visitors</div>
+        </div>
     </div>
 
     <footer>
@@ -51,6 +59,28 @@
                 window.location.href = 'home.html';
             }, 1000);
         });
+
+        // Visitor Counter Logic
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000'
+            : 'https://clearufo.space';
+
+        async function updateVisitorCount() {
+            try {
+                // First get the current count
+                const response = await fetch(`${API_BASE_URL}/api/visits`);
+                const data = await response.json();
+                document.querySelector('.visitor-count').textContent = data.count;
+
+                // Then increment it
+                await fetch(`${API_BASE_URL}/api/visits`, { method: 'POST' });
+            } catch (error) {
+                console.error('Error updating visitor count:', error);
+            }
+        }
+
+        // Update count when page loads
+        document.addEventListener('DOMContentLoaded', updateVisitorCount);
     </script>
 </body>
 </html>
