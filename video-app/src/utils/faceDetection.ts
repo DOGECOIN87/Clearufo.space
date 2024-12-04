@@ -2,7 +2,6 @@ import * as tf from '@tensorflow/tfjs'
 import * as faceDetection from '@tensorflow-models/face-detection'
 
 let model: faceDetection.FaceDetector | null = null
-let isLoading = false
 let loadPromise: Promise<faceDetection.FaceDetector> | null = null
 
 export const loadFaceDetectionModel = async () => {
@@ -14,7 +13,6 @@ export const loadFaceDetectionModel = async () => {
   // Create a new loading promise
   loadPromise = (async () => {
     try {
-      isLoading = true
       await tf.ready()
       await tf.setBackend('webgl')
       
@@ -27,7 +25,6 @@ export const loadFaceDetectionModel = async () => {
       
       return model
     } finally {
-      isLoading = false
       loadPromise = null
     }
   })()

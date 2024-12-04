@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
         <ul>
             <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
             <li><a href="home.html">Home</a></li>
@@ -18,6 +18,32 @@
             <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
     </nav>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a>
+        </div>
+        <button class="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Navigation Overlay -->
+    <div class="nav-overlay"></div>
 
     <div class="container">
         <section class="section contact-section">
@@ -46,7 +72,37 @@
         <p>&copy; 2024 ClearUFO.Space. All rights reserved.</p>
     </footer>
 
+    <!-- Navigation Toggle Script -->
     <script>
+        // Simple navigation toggle
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.nav-overlay');
+
+        function toggleNav() {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Event listeners
+        hamburger.addEventListener('click', toggleNav);
+        overlay.addEventListener('click', toggleNav);
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', toggleNav);
+        });
+
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                toggleNav();
+            }
+        });
+
+        // Contact Form Submission
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
 

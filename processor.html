@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLEARUFO.SPACE Video Processor</title>
+  <title>CLEARUFO.SPACE Cloak Detect App</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./video-app/dist/assets/index-a-0PqaYo.css">
   <style>
@@ -20,21 +20,48 @@
 <body>
   <div class="stars" id="stars"></div>
 
-  <nav class="main-nav">
+  <!-- Desktop Navigation -->
+  <nav class="desktop-nav">
     <ul>
-      <li class="logo"><a href="./index.html"><img src="./logo.png" alt="ClearUFO Logo"></a></li>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./about.html">About</a></li>
-      <li><a href="./services.html">Services</a></li>
-      <li><a href="./pricing.html">Pricing</a></li>
-      <li><a href="./contact.html">Contact</a></li>
+      <li class="logo"><a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a></li>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
+
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <div class="logo">
+      <a href="index.html"><img src="logo.png" alt="ClearUFO Logo"></a>
+    </div>
+    <button class="hamburger-menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Navigation Overlay -->
+  <div class="nav-overlay"></div>
 
   <div class="content">
     <div class="main-content">
       <div class="glowing-window">
-        <h1>Video Processor</h1>
+        <h1>Cloak Detect App</h1>
         <p>Advanced video processing and analysis tools</p>
         
         <div id="root"></div>
@@ -65,6 +92,34 @@
 
     createStarfield();
     window.addEventListener('resize', createStarfield);
+
+    // Navigation Toggle Script
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const overlay = document.querySelector('.nav-overlay');
+
+    function toggleNav() {
+      mobileNav.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Event listeners
+    hamburger.addEventListener('click', toggleNav);
+    overlay.addEventListener('click', toggleNav);
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', toggleNav);
+    });
+
+    // Close menu when pressing Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+        toggleNav();
+      }
+    });
   </script>
   <script type="module" src="./video-app/dist/assets/index-4QW5oBce.js"></script>
 </body>

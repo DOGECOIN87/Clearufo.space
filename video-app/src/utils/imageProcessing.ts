@@ -87,7 +87,6 @@ export const applyCLAHE = (data: Uint8ClampedArray, width: number, height: numbe
       // If pixel is in edge tile
       else if (tileX === 0 || tileX === numXTiles - 1 || tileY === 0 || tileY === numYTiles - 1) {
         const nextTileX = Math.min(tileX + 1, numXTiles - 1)
-        const nextTileY = Math.min(tileY + 1, numYTiles - 1)
         newValue = interpolate(
           x,
           tileX * TILE_SIZE,
