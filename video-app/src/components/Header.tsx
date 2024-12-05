@@ -8,7 +8,7 @@ const Header = () => {
           <div className="bg-blue-500/20 p-2 rounded-lg">
             <Video className="w-6 h-6 text-blue-400" />
           </div>
-          <h1 className="text-xl font-semibold text-white">Video Processor</h1>
+          <h1 className="text-xl font-semibold text-white">Cloak Detect App</h1>
         </div>
       </div>
     </header>
