@@ -5,7 +5,7 @@ import Visualizer from './Visualizer'
 import Player from './Player'
 import { calculateHistogram, calculateCDF, applyCLAHE, adjustExposure } from '../utils/imageProcessing'
 import { rgbToHsv, rgbToCmykC, rgbToCmykM, rgbToCmykY } from '../utils/colorConversion'
-import { HelpCircle, X, Loader2 } from 'lucide-react'
+import { HelpCircle, X, Loader2, Pause, Play } from 'lucide-react'
 import type { 
   VideoProcessorProps, 
   FilterType, 
@@ -369,38 +369,112 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
   const toggleHelpModal = () => {
     setShowHelpModal(!showHelpModal);
   }
+  
+  // Helper function to format time in MM:SS
+  const formatTime = (seconds: number): string => {
+    const minutes = Math.floor(seconds / 60)
+    const remainingSeconds = Math.floor(seconds % 60)
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+  }
 
   return (
     <div className="flex flex-col gap-8">
       <div className="w-full space-y-6">
-        <div className={`glass-card rounded-2xl relative overflow-hidden ${
-          isVerticalVideo ? 'max-w-[500px] mx-auto' : ''
+        <div className={`${
+          isVerticalVideo ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'
         }`}>
-          <Visualizer
-            canvasRef={processedCanvasRef}
-            isPlaying={isPlaying}
-            currentTime={currentTime}
-            duration={duration}
-            isVerticalVideo={isVerticalVideo}
-            onPlayPause={togglePlayback}
-          />
-          {isVideoLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-              <div className="flex items-center space-x-3 text-white">
-                <Loader2 className="w-6 h-6 animate-spin" />
-                <span className="font-medium">
-                  Loading video...
-                </span>
+          {/* Original Video Player */}
+          <div className="glass-card rounded-2xl relative overflow-hidden">
+            <div className="mb-2 text-center text-gray-300 font-medium py-1 bg-[#2A2A30]/50">
+              Original Video
+            </div>
+            <div className={`${isVerticalVideo ? 'aspect-[9/16]' : 'aspect-video'} relative`}>
+              <video
+                ref={originalVideoRef}
+                className="w-full h-full object-contain rounded-xl cursor-pointer"
+                playsInline
+                onClick={togglePlayback}
+              />
+              
+              {/* Interactive overlay */}
+              <div 
+                className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-200 flex items-center justify-center"
+                onClick={togglePlayback}
+              >
+                <div className="opacity-0 hover:opacity-80 transition-opacity duration-200">
+                  {isPlaying ? (
+                    <Pause className="w-16 h-16 text-white" />
+                  ) : (
+                    <Play className="w-16 h-16 text-white" />
+                  )}
+                </div>
+              </div>
+              
+              {/* Progress bar */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-800">
+                <div
+                  className="h-full bg-blue-500 transition-all duration-100"
+                  style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+                />
+              </div>
+              
+              {/* Time indicators */}
+              <div className="absolute bottom-4 left-4 right-4 flex justify-between text-sm text-white/80">
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(duration)}</span>
               </div>
             </div>
-          )}
-          {videoError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-              <div className="text-red-400 font-medium text-center px-4">
-                {videoError}
+            
+            {isVideoLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="flex items-center space-x-3 text-white">
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                  <span className="font-medium">
+                    Loading video...
+                  </span>
+                </div>
               </div>
+            )}
+            {videoError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="text-red-400 font-medium text-center px-4">
+                  {videoError}
+                </div>
+              </div>
+            )}
+          </div>
+          
+          {/* Processed Video Player */}
+          <div className="glass-card rounded-2xl relative overflow-hidden">
+            <div className="mb-2 text-center text-gray-300 font-medium py-1 bg-[#2A2A30]/50">
+              Processed Video
             </div>
-          )}
+            <Visualizer
+              canvasRef={processedCanvasRef}
+              isPlaying={isPlaying}
+              currentTime={currentTime}
+              duration={duration}
+              isVerticalVideo={isVerticalVideo}
+              onPlayPause={togglePlayback}
+            />
+            {isVideoLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="flex items-center space-x-3 text-white">
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                  <span className="font-medium">
+                    Loading video...
+                  </span>
+                </div>
+              </div>
+            )}
+            {videoError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="text-red-400 font-medium text-center px-4">
+                  {videoError}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <VideoControls
@@ -478,12 +552,6 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
           </div>
         </div>
       )}
-
-      <video
-        ref={originalVideoRef}
-        className="hidden"
-        playsInline
-      />
 
       <Player
         videoRef={originalVideoRef}
