@@ -1,0 +1,63 @@
+name: Deploy Website to GitHub Pages
+
+on:
+  # Runs on pushes targeting the main branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use Node.js 20.x or match your development version
+          cache: 'npm'
+          cache-dependency-path: video-app/package-lock.json
+
+      - name: Install video-app dependencies
+        run: npm ci --prefix video-app
+
+      - name: Build video-app
+        run: npm run build --prefix video-app # Builds to video-app/dist
+
+      - name: Prepare deployment directory
+        run: |
+          mkdir deploy_site
+          # Copy root files (excluding unnecessary ones)
+          rsync -av --exclude='.git*' --exclude='.github' --exclude='node_modules' --exclude='video-app' --exclude='deploy_site' --exclude='package*.json' --exclude='server.js' --exclude='README.md' ./ deploy_site/
+          # Copy built video app files into the deployment directory
+          cp -r video-app/dist/* deploy_site/
+          # Rename the video app's index.html to processor.html
+          mv deploy_site/index.html deploy_site/processor.html
+          # Copy the original root index.html back (overwriting the one from rsync if necessary, ensuring it's the root one)
+          cp index.html deploy_site/index.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload the deploy_site directory
+          path: './deploy_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
