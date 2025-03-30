@@ -49,6 +49,11 @@ jobs:
           # cp video-app/dist/index.html deploy_site/processor.html
           # Copy other built video app files (assets, js, css) to the root
           cp -r video-app/dist/assets deploy_site/assets
+          # Copy CSS and JS assets to ensure they have correct MIME types
+          mkdir -p deploy_site/assets/js
+          mkdir -p deploy_site/assets/css
+          find video-app/dist/assets -name "*.js" -exec cp {} deploy_site/assets/js/ \;
+          find video-app/dist/assets -name "*.css" -exec cp {} deploy_site/assets/css/ \;
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
