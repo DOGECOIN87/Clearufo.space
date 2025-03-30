@@ -45,8 +45,8 @@ jobs:
           mkdir -p deploy_site
           # Copy root files (excluding unnecessary ones)
           rsync -av --exclude='.git*' --exclude='.github' --exclude='node_modules' --exclude='video-app' --exclude='deploy_site' --exclude='package*.json' --exclude='server.js' --exclude='README.md' ./ deploy_site/
-          # Copy built video app index.html directly to processor.html
-          cp video-app/dist/index.html deploy_site/processor.html
+          # Don't overwrite our custom processor.html with the video-app index.html
+          # cp video-app/dist/index.html deploy_site/processor.html
           # Copy other built video app files (assets, js, css) to the root
           cp -r video-app/dist/assets deploy_site/assets
 
