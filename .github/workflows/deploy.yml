@@ -42,15 +42,11 @@ jobs:
 
       - name: Prepare deployment directory
         run: |
-          mkdir deploy_site
+          mkdir -p deploy_site/video-app/dist
           # Copy root files (excluding unnecessary ones)
           rsync -av --exclude='.git*' --exclude='.github' --exclude='node_modules' --exclude='video-app' --exclude='deploy_site' --exclude='package*.json' --exclude='server.js' --exclude='README.md' ./ deploy_site/
-          # Copy built video app files into the deployment directory
-          cp -r video-app/dist/* deploy_site/
-          # Rename the video app's index.html to processor.html
-          mv deploy_site/index.html deploy_site/processor.html
-          # Copy the original root index.html back (overwriting the one from rsync if necessary, ensuring it's the root one)
-          cp index.html deploy_site/index.html
+          # Copy built video app files to video-app/dist/ directory to match the paths in processor.html
+          cp -r video-app/dist/* deploy_site/video-app/dist/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
