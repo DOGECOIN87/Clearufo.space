@@ -1,3 +1,19 @@
+// Function to adjust exposure of an image
+export const adjustExposure = (data: Uint8ClampedArray, exposureValue: number): void => {
+  // Skip alpha channel (every 4th value)
+  for (let i = 0; i < data.length; i += 4) {
+    // Apply exposure adjustment to RGB channels
+    // For positive exposure, we brighten the image
+    // For negative exposure, we darken the image
+    const factor = Math.pow(2, exposureValue / 25); // Even more aggressive adjustment
+    
+    // Apply the exposure adjustment to each RGB channel
+    data[i] = Math.min(255, Math.max(0, Math.round(data[i] * factor)));
+    data[i + 1] = Math.min(255, Math.max(0, Math.round(data[i + 1] * factor)));
+    data[i + 2] = Math.min(255, Math.max(0, Math.round(data[i + 2] * factor)));
+  }
+}
+
 // Helper function to calculate histogram
 export const calculateHistogram = (data: Uint8ClampedArray): number[] => {
   const histogram = new Array(256).fill(0)

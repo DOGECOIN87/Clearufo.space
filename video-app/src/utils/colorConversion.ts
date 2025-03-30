@@ -33,3 +33,72 @@ export const rgbToHsv = (r: number, g: number, b: number): [number, number, numb
 
   return [h, s, v]
 }
+
+// Convert RGB to CMYK Cyan channel (grayscale)
+export const rgbToCmykC = (r: number, g: number, b: number): number => {
+  // Normalize RGB to 0-1
+  const rr = r / 255
+  const gg = g / 255
+  const bb = b / 255
+
+  // Calculate K (black)
+  const k = 1 - Math.max(rr, gg, bb)
+
+  // Handle pure black case
+  if (k === 1) {
+    return 0
+  }
+
+  // Calculate Cyan with black removal
+  const c = (1 - rr - k) / (1 - k)
+
+  // Convert to grayscale (0-255)
+  // For CMYK channels, higher values mean more ink/darker colors
+  return Math.round(c * 255)
+}
+
+// Convert RGB to CMYK Magenta channel (grayscale)
+export const rgbToCmykM = (r: number, g: number, b: number): number => {
+  // Normalize RGB to 0-1
+  const rr = r / 255
+  const gg = g / 255
+  const bb = b / 255
+
+  // Calculate K (black)
+  const k = 1 - Math.max(rr, gg, bb)
+
+  // Handle pure black case
+  if (k === 1) {
+    return 0
+  }
+
+  // Calculate Magenta with black removal
+  const m = (1 - gg - k) / (1 - k)
+
+  // Convert to grayscale (0-255)
+  // For CMYK channels, higher values mean more ink/darker colors
+  return Math.round(m * 255)
+}
+
+// Convert RGB to CMYK Yellow channel (grayscale)
+export const rgbToCmykY = (r: number, g: number, b: number): number => {
+  // Normalize RGB to 0-1
+  const rr = r / 255
+  const gg = g / 255
+  const bb = b / 255
+
+  // Calculate K (black)
+  const k = 1 - Math.max(rr, gg, bb)
+
+  // Handle pure black case
+  if (k === 1) {
+    return 0
+  }
+
+  // Calculate Yellow with black removal
+  const y = (1 - bb - k) / (1 - k)
+
+  // Convert to grayscale (0-255)
+  // For CMYK channels, higher values mean more ink/darker colors
+  return Math.round(y * 255)
+}

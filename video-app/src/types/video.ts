@@ -4,13 +4,13 @@ export interface VideoControlsProps {
   isPlaying: boolean
   playbackRate: number
   temporalSmoothing: SmoothingMode
-  faceDetection: boolean
+  exposure: number
   disabled: boolean
   onPlayPause: () => void
   onReset: () => void
   onPlaybackRateChange: (rate: number) => void
   onTemporalSmoothingChange: (mode: SmoothingMode) => void
-  onFaceDetectionToggle: () => void
+  onExposureChange: (value: number) => void
 }
 
 export interface VisualizerProps {
@@ -29,7 +29,7 @@ export interface PlayerProps {
   onEnded: () => void
 }
 
-export type FilterType = 'grayscale' | 'histogram' | 'hue' | 'hue-histogram' | 'clahe' | 'hue-histogram-clahe'
+export type FilterType = 'grayscale' | 'histogram' | 'hue' | 'hue-histogram' | 'clahe' | 'hue-histogram-clahe' | 'cmyk-c' | 'cmyk-m' | 'cmyk-y'
 export type SmoothingMode = 'off' | 'normal' | 'smooth'
 
 export interface FrameBufferSizes {

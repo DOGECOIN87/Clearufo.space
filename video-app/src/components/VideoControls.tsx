@@ -1,29 +1,17 @@
-import { Play, Pause, RotateCcw, Clock, Scan } from 'lucide-react'
-
-interface VideoControlsProps {
-  isPlaying: boolean
-  playbackRate: number
-  temporalSmoothing: 'off' | 'normal' | 'smooth'
-  faceDetection: boolean
-  disabled?: boolean
-  onPlayPause: () => void
-  onReset: () => void
-  onPlaybackRateChange: (rate: number) => void
-  onTemporalSmoothingChange: (mode: 'off' | 'normal' | 'smooth') => void
-  onFaceDetectionToggle: () => void
-}
+import { Play, Pause, RotateCcw, Clock, SunMedium, Plus, Minus } from 'lucide-react'
+import { VideoControlsProps } from '../types/video'
 
 const VideoControls = ({
   isPlaying,
   playbackRate,
   temporalSmoothing,
-  faceDetection,
+  exposure,
   disabled = false,
   onPlayPause,
   onReset,
   onPlaybackRateChange,
   onTemporalSmoothingChange,
-  onFaceDetectionToggle,
+  onExposureChange,
 }: VideoControlsProps) => {
   const playbackRates = [0.1, 0.25, 0.5, 1, 2]
 
@@ -82,19 +70,28 @@ const VideoControls = ({
         </select>
       </div>
 
-      <button
-        onClick={onFaceDetectionToggle}
-        className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200
-                   ${faceDetection 
-                     ? 'bg-blue-500 hover:bg-blue-600 shadow-lg shadow-blue-500/20' 
-                     : 'bg-[#2A2A30] hover:bg-[#3A3A42] border border-[#3A3A42]'
-                   }
-                   disabled:opacity-50 disabled:cursor-not-allowed`}
-        disabled={disabled}
-      >
-        <Scan className="w-4 h-4" />
-        <span className="text-sm">Face Detection</span>
-      </button>
+      <div className="flex items-center space-x-3">
+        <SunMedium className="w-4 h-4 text-gray-400" />
+        <div className="flex items-center space-x-1">
+          <button
+            onClick={() => onExposureChange(exposure - 10)}
+            className="p-2 rounded-lg hover:bg-white/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Decrease Exposure"
+            disabled={disabled || exposure <= -100}
+          >
+            <Minus className="w-4 h-4 text-gray-200" />
+          </button>
+          <span className="text-gray-200 min-w-[40px] text-center">{exposure}</span>
+          <button
+            onClick={() => onExposureChange(exposure + 10)}
+            className="p-2 rounded-lg hover:bg-white/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Increase Exposure"
+            disabled={disabled || exposure >= 100}
+          >
+            <Plus className="w-4 h-4 text-gray-200" />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

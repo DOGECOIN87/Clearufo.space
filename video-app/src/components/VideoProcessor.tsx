@@ -2,19 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import VideoControls from './VideoControls'
 import Visualizer from './Visualizer'
-import TrackList from './TrackList'
 import Player from './Player'
-import { calculateHistogram, calculateCDF, applyCLAHE } from '../utils/imageProcessing'
-import { loadFaceDetectionModel, detectFaces, drawFaceDetections } from '../utils/faceDetection'
-import { rgbToHsv } from '../utils/colorConversion'
-import { Loader2 } from 'lucide-react'
+import { calculateHistogram, calculateCDF, applyCLAHE, adjustExposure } from '../utils/imageProcessing'
+import { rgbToHsv, rgbToCmykC, rgbToCmykM, rgbToCmykY } from '../utils/colorConversion'
+import { HelpCircle, X, Loader2 } from 'lucide-react'
 import type { 
   VideoProcessorProps, 
   FilterType, 
   SmoothingMode, 
   FrameBufferSizes 
 } from '../types/video'
-import type { FaceDetector } from '@tensorflow-models/face-detection'
 
 const FRAME_BUFFER_SIZES: FrameBufferSizes = {
   off: 0,
@@ -22,12 +19,51 @@ const FRAME_BUFFER_SIZES: FrameBufferSizes = {
   smooth: 12
 }
 
+// Filter explanations for the help modal
+const FILTER_EXPLANATIONS = {
+  'hue-histogram': {
+    title: 'HSV-H + Histogram Equalization',
+    description: 'Extracting the HSV-H (hue) color channel from a video can help detect cloaked objects or beings by analyzing color variations that may be imperceptible to the human eye. The histogram equalization enhances contrast in this channel, making subtle differences more visible.'
+  },
+  'hue-histogram-clahe': {
+    title: 'HSV-H + Histogram + CLAHE',
+    description: 'Combines hue extraction with both standard histogram equalization and CLAHE (Contrast Limited Adaptive Histogram Equalization). CLAHE applies histogram equalization to small regions rather than the entire image, often revealing local details that might be missed with global equalization.'
+  },
+  'histogram': {
+    title: 'Histogram Equalization',
+    description: 'Enhances the contrast of the entire image by stretching the intensity distribution. This can make hidden patterns more visible by ensuring all brightness levels are well-represented.'
+  },
+  'hue': {
+    title: 'HSV-H (Hue) Channel',
+    description: 'Isolates the hue component from the HSV color model, which represents the color type independent of saturation and brightness. This can reveal objects with subtle color differences that might be camouflaged in normal viewing.'
+  },
+  'clahe': {
+    title: 'CLAHE',
+    description: 'Contrast Limited Adaptive Histogram Equalization enhances local contrast while limiting noise amplification. It divides the image into small tiles and applies histogram equalization to each, then combines them using bilinear interpolation.'
+  },
+  'grayscale': {
+    title: 'Grayscale',
+    description: 'Converts the image to grayscale, removing color information but preserving luminance. This can sometimes make certain patterns more apparent by eliminating the distraction of color.'
+  },
+  'cmyk-c': {
+    title: 'CMYK Cyan Channel',
+    description: 'Extracts the Cyan channel from the CMYK color model. Cyan is the opposite of red in the color spectrum, so this filter can highlight objects that have unique signatures in the red wavelengths.'
+  },
+  'cmyk-m': {
+    title: 'CMYK Magenta Channel',
+    description: 'Extracts the Magenta channel from the CMYK color model. Magenta is the opposite of green, potentially revealing entities that have unusual interactions with green wavelengths.'
+  },
+  'cmyk-y': {
+    title: 'CMYK Yellow Channel',
+    description: 'Extracts the Yellow channel from the CMYK color model. Yellow is the opposite of blue, which can help identify anomalies that might be particularly visible or invisible in blue light.'
+  }
+};
+
 const VideoProcessor = ({ file }: VideoProcessorProps) => {
   const originalVideoRef = useRef<HTMLVideoElement>(null)
   const processedCanvasRef = useRef<HTMLCanvasElement>(null)
   const animationFrameRef = useRef<number>()
   const frameBufferRef = useRef<ImageData[]>([])
-  const faceDetectorRef = useRef<FaceDetector | null>(null)
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -35,11 +71,11 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
   const [playbackRate, setPlaybackRate] = useState(1)
   const [currentFilter, setCurrentFilter] = useState<FilterType>('hue-histogram')
   const [temporalSmoothing, setTemporalSmoothing] = useState<SmoothingMode>('normal')
-  const [faceDetection, setFaceDetection] = useState(false)
-  const [isFaceDetectionLoading, setIsFaceDetectionLoading] = useState(false)
+  const [exposure, setExposure] = useState(0) // 0 is neutral exposure
   const [isVerticalVideo, setIsVerticalVideo] = useState(false)
   const [isVideoLoading, setIsVideoLoading] = useState(true)
   const [videoError, setVideoError] = useState<string | null>(null)
+  const [showHelpModal, setShowHelpModal] = useState(false)
 
   // Cleanup function
   const cleanup = () => {
@@ -61,9 +97,6 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
       const ctx = canvas.getContext('2d')
       ctx?.clearRect(0, 0, canvas.width, canvas.height)
     }
-
-    // Reset face detector
-    faceDetectorRef.current = null
   }
 
   // Load video source
@@ -133,6 +166,9 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const data = imageData.data
 
+      // Always apply exposure adjustment (even if 0, for consistency)
+      adjustExposure(data, exposure);
+      
       // Apply selected filter
       switch (currentFilter) {
         case 'grayscale':
@@ -140,7 +176,7 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
             const avg = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2])
             data[i] = data[i + 1] = data[i + 2] = avg
           }
-          break
+          break;
 
         case 'histogram':
           const histogram = calculateHistogram(data)
@@ -152,14 +188,14 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
             const newValue = Math.round(((cdf[avg] - cdfMin) / (total - cdfMin)) * 255)
             data[i] = data[i + 1] = data[i + 2] = newValue
           }
-          break
+          break;
 
         case 'hue':
           for (let i = 0; i < data.length; i += 4) {
             const [h] = rgbToHsv(data[i], data[i + 1], data[i + 2])
             data[i] = data[i + 1] = data[i + 2] = h
           }
-          break
+          break;
 
         case 'hue-histogram':
           // Convert to HSV and extract hue channel
@@ -181,11 +217,11 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
             const newHue = Math.round(((hueCdf[h] - hueCdfMin) / (hueTotal - hueCdfMin)) * 255)
             data[i] = data[i + 1] = data[i + 2] = newHue
           }
-          break
+          break;
 
         case 'clahe':
           applyCLAHE(data, canvas.width, canvas.height)
-          break
+          break;
 
         case 'hue-histogram-clahe':
           // Convert to HSV and extract hue channel
@@ -203,7 +239,28 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
           for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i + 1] = data[i + 2] = hueDataClahe[i]
           }
-          break
+          break;
+
+        case 'cmyk-c':
+          for (let i = 0; i < data.length; i += 4) {
+            const value = rgbToCmykC(data[i], data[i + 1], data[i + 2])
+            data[i] = data[i + 1] = data[i + 2] = value
+          }
+          break;
+
+        case 'cmyk-m':
+          for (let i = 0; i < data.length; i += 4) {
+            const value = rgbToCmykM(data[i], data[i + 1], data[i + 2])
+            data[i] = data[i + 1] = data[i + 2] = value
+          }
+          break;
+
+        case 'cmyk-y':
+          for (let i = 0; i < data.length; i += 4) {
+            const value = rgbToCmykY(data[i], data[i + 1], data[i + 2])
+            data[i] = data[i + 1] = data[i + 2] = value
+          }
+          break;
       }
 
       // Apply temporal smoothing if enabled
@@ -229,17 +286,6 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
 
       // Put processed frame back to canvas
       ctx.putImageData(imageData, 0, 0)
-
-      // Apply face detection if enabled
-      if (faceDetection && faceDetectorRef.current) {
-        try {
-          const faces = await detectFaces(video)
-          drawFaceDetections(ctx, faces)
-        } catch (error) {
-          console.error('Face detection error:', error)
-          // Don't throw here to prevent video processing from stopping
-        }
-      }
 
       // Request next frame
       animationFrameRef.current = requestAnimationFrame(processFrame)
@@ -277,7 +323,7 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [isPlaying, currentFilter, temporalSmoothing, faceDetection, isVideoLoading])
+  }, [isPlaying, currentFilter, temporalSmoothing, exposure, isVideoLoading])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -314,27 +360,19 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
     frameBufferRef.current = [] // Clear buffer when changing modes
   }
 
-  const handleFaceDetectionToggle = async () => {
-    if (!faceDetection && !isFaceDetectionLoading) {
-      setIsFaceDetectionLoading(true)
-      try {
-        const detector = await loadFaceDetectionModel()
-        faceDetectorRef.current = detector
-        setFaceDetection(true)
-      } catch (error) {
-        console.error('Failed to load face detection model:', error)
-        setVideoError('Failed to load face detection model. Please try again.')
-      } finally {
-        setIsFaceDetectionLoading(false)
-      }
-    } else {
-      setFaceDetection(!faceDetection)
-    }
+  const handleExposureChange = (value: number) => {
+    // Clamp exposure value between -100 and 100
+    const newExposure = Math.max(-100, Math.min(100, value));
+    setExposure(newExposure);
+  }
+
+  const toggleHelpModal = () => {
+    setShowHelpModal(!showHelpModal);
   }
 
   return (
-    <div className={`flex ${isVerticalVideo ? 'flex-col lg:flex-row' : 'flex-col md:flex-row'} gap-8`}>
-      <div className={`${isVerticalVideo ? 'w-full lg:w-1/2 xl:w-2/5' : 'w-full md:w-2/3'} space-y-6`}>
+    <div className="flex flex-col gap-8">
+      <div className="w-full space-y-6">
         <div className={`glass-card rounded-2xl relative overflow-hidden ${
           isVerticalVideo ? 'max-w-[500px] mx-auto' : ''
         }`}>
@@ -346,12 +384,12 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
             isVerticalVideo={isVerticalVideo}
             onPlayPause={togglePlayback}
           />
-          {(isVideoLoading || isFaceDetectionLoading) && (
+          {isVideoLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
               <div className="flex items-center space-x-3 text-white">
                 <Loader2 className="w-6 h-6 animate-spin" />
                 <span className="font-medium">
-                  {isVideoLoading ? 'Loading video...' : 'Loading face detection...'}
+                  Loading video...
                 </span>
               </div>
             </div>
@@ -369,35 +407,77 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
           isPlaying={isPlaying}
           playbackRate={playbackRate}
           temporalSmoothing={temporalSmoothing}
-          faceDetection={faceDetection}
+          exposure={exposure}
           onPlayPause={togglePlayback}
           onReset={handleReset}
           onPlaybackRateChange={handlePlaybackRateChange}
           onTemporalSmoothingChange={handleTemporalSmoothingChange}
-          onFaceDetectionToggle={handleFaceDetectionToggle}
+          onExposureChange={handleExposureChange}
           disabled={isVideoLoading || !!videoError}
         />
 
-        <select
-          value={currentFilter}
-          onChange={(e: ChangeEvent<HTMLSelectElement>) => setCurrentFilter(e.target.value as FilterType)}
-          className="w-full bg-[#2A2A30] text-gray-200 rounded-lg px-4 py-3 outline-none 
-                   border border-[#3A3A42] focus:border-blue-500 transition-colors
-                   disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={isVideoLoading || !!videoError}
-        >
-          <option value="hue-histogram">HSV-H + Histogram Equalization</option>
-          <option value="hue-histogram-clahe">HSV-H + Histogram + CLAHE</option>
-          <option value="histogram">Histogram Equalization</option>
-          <option value="hue">HSV-H (Hue) Channel</option>
-          <option value="clahe">CLAHE</option>
-          <option value="grayscale">Grayscale</option>
-        </select>
+        <div className="flex items-center gap-4">
+          <select
+            value={currentFilter}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => setCurrentFilter(e.target.value as FilterType)}
+            className="flex-1 bg-[#2A2A30] text-gray-200 rounded-lg px-4 py-3 outline-none 
+                     border border-[#3A3A42] focus:border-blue-500 transition-colors
+                     disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isVideoLoading || !!videoError}
+          >
+            <option value="hue-histogram">HSV-H + Histogram Equalization</option>
+            <option value="hue-histogram-clahe">HSV-H + Histogram + CLAHE</option>
+            <option value="histogram">Histogram Equalization</option>
+            <option value="hue">HSV-H (Hue) Channel</option>
+            <option value="clahe">CLAHE</option>
+            <option value="grayscale">Grayscale</option>
+            <option value="cmyk-c">CMYK Cyan Channel</option>
+            <option value="cmyk-m">CMYK Magenta Channel</option>
+            <option value="cmyk-y">CMYK Yellow Channel</option>
+          </select>
+          
+          <button 
+            onClick={toggleHelpModal}
+            className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 p-3 rounded-lg transition-colors"
+            title="Filter Explanations"
+          >
+            <HelpCircle className="w-5 h-5" />
+          </button>
+        </div>
+        
+        <div className="text-center text-sm text-gray-400 mt-2">
+          For best results set speed to 0.1X
+        </div>
       </div>
 
-      <div className={`${isVerticalVideo ? 'w-full lg:w-1/2 xl:w-3/5' : 'w-full md:w-1/3'}`}>
-        <TrackList />
-      </div>
+      {/* Help Modal */}
+      {showHelpModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-[#1A1A20] border border-[#3A3A42] rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-4 border-b border-[#3A3A42]">
+              <h2 className="text-xl font-semibold text-gray-100">Filter Explanations</h2>
+              <button 
+                onClick={toggleHelpModal}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              {Object.entries(FILTER_EXPLANATIONS).map(([key, { title, description }]) => (
+                <div key={key} className="space-y-2">
+                  <h3 className="font-medium text-gray-200">{title}</h3>
+                  <p className="text-gray-400">{description}</p>
+                  {key !== Object.keys(FILTER_EXPLANATIONS)[Object.keys(FILTER_EXPLANATIONS).length - 1] && (
+                    <div className="border-t border-[#3A3A42] pt-4 mt-4"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <video
         ref={originalVideoRef}
