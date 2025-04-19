@@ -87,19 +87,19 @@ const VideoControls = ({
             >
               {isPlaying ? (
                 <Pause className="w-5 h-5 text-gray-200" />
-            ) : (
-              <Play className="w-5 h-5 text-gray-200" />
-            )}
-          </button>
+              ) : (
+                <Play className="w-5 h-5 text-gray-200" />
+              )}
+            </button>
 
-          <button
-            onClick={onReset}
-            className="p-3 rounded-lg hover:bg-white/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            title="Reset"
-            disabled={disabled}
-          >
-            <RotateCcw className="w-5 h-5 text-gray-200" />
-          </button>
+            <button
+              onClick={onReset}
+              className="p-3 rounded-lg hover:bg-white/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              title="Reset"
+              disabled={disabled}
+            >
+              <RotateCcw className="w-5 h-5 text-gray-200" />
+            </button>
           </div>
           
           <select

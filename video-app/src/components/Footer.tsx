@@ -1,5 +1,3 @@
-import {  } from 'lucide-react'
-
 const Footer = () => {
   return (
     <footer className="glass-bg border-t border-white/5 mt-8">
