@@ -1,0 +1,4 @@
+node_modules/
+visits.json
+.DS_Store
+*.log
