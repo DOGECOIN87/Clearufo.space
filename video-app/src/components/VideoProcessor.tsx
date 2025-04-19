@@ -3,7 +3,7 @@ import type { ChangeEvent } from 'react'
 import VideoControls from './VideoControls'
 import Visualizer from './Visualizer'
 import Player from './Player'
-import { calculateHistogram, calculateCDF, applyCLAHE, adjustExposure } from '../utils/imageProcessing'
+import { calculateHistogram, calculateCDF, applyCLAHE } from '../utils/imageProcessing'
 import { rgbToHsv, rgbToCmykC, rgbToCmykM, rgbToCmykY } from '../utils/colorConversion'
 import { HelpCircle, X, Loader2, Pause, Play } from 'lucide-react'
 import type { 
@@ -71,7 +71,6 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
   const [playbackRate, setPlaybackRate] = useState(1)
   const [currentFilter, setCurrentFilter] = useState<FilterType>('hue-histogram')
   const [temporalSmoothing, setTemporalSmoothing] = useState<SmoothingMode>('normal')
-  const [exposure, setExposure] = useState(0) // 0 is neutral exposure
   const [isVerticalVideo, setIsVerticalVideo] = useState(false)
   const [isVideoLoading, setIsVideoLoading] = useState(true)
   const [videoError, setVideoError] = useState<string | null>(null)
@@ -165,9 +164,6 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
       // Get frame data
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const data = imageData.data
-
-      // Always apply exposure adjustment (even if 0, for consistency)
-      adjustExposure(data, exposure);
       
       // Apply selected filter
       switch (currentFilter) {
@@ -323,7 +319,7 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [isPlaying, currentFilter, temporalSmoothing, exposure, isVideoLoading])
+  }, [isPlaying, currentFilter, temporalSmoothing, isVideoLoading])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -358,12 +354,6 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
   const handleTemporalSmoothingChange = (mode: SmoothingMode) => {
     setTemporalSmoothing(mode)
     frameBufferRef.current = [] // Clear buffer when changing modes
-  }
-
-  const handleExposureChange = (value: number) => {
-    // Clamp exposure value between -100 and 100
-    const newExposure = Math.max(-100, Math.min(100, value));
-    setExposure(newExposure);
   }
 
   const toggleHelpModal = () => {
@@ -481,12 +471,10 @@ const VideoProcessor = ({ file }: VideoProcessorProps) => {
           isPlaying={isPlaying}
           playbackRate={playbackRate}
           temporalSmoothing={temporalSmoothing}
-          exposure={exposure}
           onPlayPause={togglePlayback}
           onReset={handleReset}
           onPlaybackRateChange={handlePlaybackRateChange}
           onTemporalSmoothingChange={handleTemporalSmoothingChange}
-          onExposureChange={handleExposureChange}
           disabled={isVideoLoading || !!videoError}
         />
 

@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://github.com/DOGECOIN87/Clearufo.space.git"
   },
   "dependencies": {
     "@tensorflow-models/face-detection": "^1.0.3",

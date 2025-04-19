@@ -4,13 +4,11 @@ export interface VideoControlsProps {
   isPlaying: boolean
   playbackRate: number
   temporalSmoothing: SmoothingMode
-  exposure: number
   disabled: boolean
   onPlayPause: () => void
   onReset: () => void
   onPlaybackRateChange: (rate: number) => void
   onTemporalSmoothingChange: (mode: SmoothingMode) => void
-  onExposureChange: (value: number) => void
 }
 
 export interface VisualizerProps {
