@@ -48,7 +48,7 @@ jobs:
         run: npm ci --prefix video-app
 
       - name: Build video-app
-        run: npm run build --prefix video-app # Builds to video-app/dist
+        run: npm run build --prefix video-app -- --base=./ # Builds to video-app/dist with relative base
 
       - name: Prepare deployment directory
         run: |
