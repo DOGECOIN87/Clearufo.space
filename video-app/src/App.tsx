@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Upload } from 'lucide-react'
 import VideoProcessor from './components/VideoProcessor'
 import Header from './components/Header'
-import Footer from './components/Footer'
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -15,10 +14,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] text-gray-100 flex flex-col">
+    <div className="min-h-screen bg-[#0A0A0B] text-gray-100">
       <Header />
       
-      <main className="container mx-auto px-6 py-8 flex-grow">
+      <main className="container mx-auto px-6 py-8">
         {!selectedFile ? (
           <div className="flex flex-col items-center justify-center space-y-4 p-8">
             <label className="glass-card w-full h-64 rounded-2xl cursor-pointer 
@@ -43,8 +42,6 @@ function App() {
           <VideoProcessor file={selectedFile} />
         )}
       </main>
-
-      <Footer />
     </div>
   )
 }
