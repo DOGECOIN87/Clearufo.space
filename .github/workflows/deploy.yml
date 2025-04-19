@@ -34,6 +34,11 @@ jobs:
           cache: 'npm'
           cache-dependency-path: video-app/package-lock.json
 
+      - name: Clean npm cache and remove old build
+        run: |
+          npm cache clean --force
+          rm -rf video-app/dist
+
       - name: Install video-app dependencies
         run: npm ci --prefix video-app
 
